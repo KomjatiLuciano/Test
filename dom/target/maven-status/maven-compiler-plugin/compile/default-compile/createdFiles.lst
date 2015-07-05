@@ -1,7 +1,9 @@
 dom/paciente/PacienteServicio$1.class
 dom/recepcionista/RecepcionistaServicio$1.class
+dom/dias/DiasDoctoresServicio.class
 dom/dueño/DueñoServicio$2.class
 dom/grupoSanguineo/IGrupoSanguineo.class
+dom/obraSocial/ObraSocialServicio$2.class
 dom/regex/RegexValidation$ValidaTel.class
 dom/regex/RegexValidation$ValidaCobertura.class
 dom/regex/RegexValidation$ValidaDoc.class
@@ -17,14 +19,17 @@ dom/dueño/DueñoServicio.class
 dom/recepcionista/QRecepcionista.class
 dom/dias/DiasEnum.class
 dom/regex/RegexValidation$ValidaMail.class
-dom/turnos/Turnos.class
+dom/dias/HorasDoctoresServicio.class
+dom/dias/QHorasDoctores.class
 dom/dueño/DueñoServicio$1.class
-dom/turnos/TurnosServicio.class
+dom/obraSocial/ObraSocialServicio$1.class
 dom/regex/RegexValidation$ValidaMatricula.class
 dom/tipoDeSexo/ITipoDeSexo.class
 dom/grupoSanguineo/GrupoSanguineoEnum.class
 dom/recepcionista/Recepcionista.class
+dom/dias/HorasDoctores.class
 dom/regex/RegexValidation$ValidaNumCarnet.class
+dom/dias/QDiasDoctores.class
 dom/dias/IDiasEnum.class
 dom/estado/EstadoEnum.class
 dom/tipoDocumento/TipoDocumentoEnum.class
@@ -38,6 +43,7 @@ dom/paciente/Paciente.class
 dom/paciente/PacienteServicio$2.class
 dom/obraSocial/ObraSocialServicio.class
 dom/doctor/DoctorServicio$2.class
+dom/dias/DiasDoctores.class
 dom/estado/IEstado.class
 dom/obraSocial/ObraSocial.class
 dom/regex/RegexValidation.class
@@ -45,5 +51,4 @@ dom/recepcionista/RecepcionistaServicio.class
 dom/doctor/DoctorServicio.class
 dom/doctor/Doctor.class
 dom/tipoDocumento/ITipoDocumento.class
-dom/turnos/QTurnos.class
 dom/dueño/QDueño.class

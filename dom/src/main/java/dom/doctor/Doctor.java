@@ -15,24 +15,17 @@
  */
 package dom.doctor;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.swing.JOptionPane;
 
-import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.RenderType;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
-import dom.dias.DiasEnum;
 import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
 import dom.persona.Persona;
-import dom.turnos.Turnos;
 
 /**
  * Entidad Doctor la cual representa a cualquier persona que atienda en el
@@ -85,7 +78,7 @@ public class Doctor extends Persona {
 	 * 
 	 * @return matricula String
 	 */
-	@MemberOrder(sequence = "1")
+	@MemberOrder(sequence = "11")
 	@Column(allowsNull = "false")
 	public String getMatricula() {
 		return matricula;
@@ -124,7 +117,7 @@ public class Doctor extends Persona {
 	 * 
 	 * @return especialidad EspecialidadEnum
 	 */
-	@MemberOrder(sequence = "2")
+	@MemberOrder(sequence = "12")
 	@Column(allowsNull = "false")
 	public EspecialidadEnum getEspecialidad() {
 		return especialidad;
@@ -148,7 +141,7 @@ public class Doctor extends Persona {
 	 * 
 	 * @return estado String
 	 */
-	@MemberOrder(sequence = "3")
+	@MemberOrder(sequence = "13")
 	@Column(allowsNull = "false")
 	public EstadoEnum getEstado() {
 		return estado;
@@ -163,33 +156,6 @@ public class Doctor extends Persona {
 	/*----------------------------------------------------*/
 	public void setEstado(final EstadoEnum estado) {
 		this.estado = estado;
-	}
-
-	// }}
-
-	private List<Turnos> listaDeTurnos = new ArrayList<Turnos>();
-
-	@Column(allowsNull = "true")
-	@CollectionLayout(render = RenderType.EAGERLY)
-	public List<Turnos> getListaDeTurnos() {
-		return listaDeTurnos;
-	}
-
-	public void setListaDeTurnos(List<Turnos> listaDeTurnos) {
-		this.listaDeTurnos = listaDeTurnos;
-	}
-
-	// {{ Dia (property)
-	private DiasEnum dia;
-
-	@MemberOrder(sequence = "4")
-	@Column(allowsNull = "true")
-	public DiasEnum getDia() {
-		return dia;
-	}
-
-	public void setDia(final DiasEnum dia) {
-		this.dia = dia;
 	}
 
 	// }}
