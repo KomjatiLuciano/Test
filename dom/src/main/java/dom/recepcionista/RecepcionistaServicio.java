@@ -100,6 +100,7 @@ public class RecepcionistaServicio extends AbstractFactoryAndRepository {
 		recepcionista.setLegajo(legajo);
 		recepcionista.setEstado(EstadoEnum.Activo);
 		persist(recepcionista);
+		container.flush();
 		return recepcionista;
 	}
 

@@ -3,6 +3,7 @@ package dom.obraSocial;
 import java.util.List;
 
 import org.apache.isis.applib.AbstractFactoryAndRepository;
+import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
@@ -35,6 +36,7 @@ public class ObraSocialServicio extends AbstractFactoryAndRepository {
 		obraSocial.setCoberturaMedica(cobertura.substring(0, 1).toUpperCase()
 				+ cobertura.substring(1));
 		persist(obraSocial);
+		container.flush();
 		return obraSocial;
 	}
 
@@ -81,4 +83,7 @@ public class ObraSocialServicio extends AbstractFactoryAndRepository {
 		});
 
 	}
+
+	@javax.inject.Inject
+	DomainObjectContainer container;
 }

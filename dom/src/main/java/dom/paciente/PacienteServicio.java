@@ -109,6 +109,7 @@ public class PacienteServicio extends AbstractFactoryAndRepository {
 		paciente.setEstado(EstadoEnum.Activo);
 		paciente.setGrupoSanguineo(grupoSanguineo);
 		persist(paciente);
+		container.flush();
 		return paciente;
 	}
 

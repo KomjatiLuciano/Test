@@ -101,6 +101,7 @@ public class DueñoServicio extends AbstractFactoryAndRepository {
 				+ iniciales.substring(1));
 		dueño.setEstado(EstadoEnum.Activo);
 		persist(dueño);
+		container.flush();
 		return dueño;
 	}
 

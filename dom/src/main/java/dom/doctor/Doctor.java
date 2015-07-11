@@ -15,8 +15,12 @@
  */
 package dom.doctor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.swing.JOptionPane;
 
 import org.apache.isis.applib.annotation.DomainObject;
@@ -26,6 +30,7 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
 import dom.persona.Persona;
+import dom.turno.Turno;
 
 /**
  * Entidad Doctor la cual representa a cualquier persona que atienda en el
@@ -160,10 +165,26 @@ public class Doctor extends Persona {
 
 	// }}
 
+	// {{ ListaTurnos (property)
+	private List<Turno> listaTurnos = new ArrayList<Turno>();
+
+	@MemberOrder(sequence = "14")
+	@Column(allowsNull = "false")
+	@Persistent(mappedBy = "doctor")
+	public List<Turno> getListaTurnos() {
+		return listaTurnos;
+	}
+
+	public void setListaTurnos(final List<Turno> listaTurnos) {
+		this.listaTurnos = listaTurnos;
+	}
+
+	// }}
+
 	public void InactivarDoctor() {
 
 		int resp = JOptionPane.showConfirmDialog(null,
-				"¿Seguro que desea eliminar?");
+				"¿Seguro que desea inactivar?");
 
 		if (resp == JOptionPane.YES_OPTION) {
 			if (this.estado == EstadoEnum.Inactivo) {

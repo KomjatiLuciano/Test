@@ -16,7 +16,9 @@
 package dom.doctor;
 
 import java.util.List;
+
 import javax.inject.Named;
+import javax.swing.JOptionPane;
 
 import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.DomainObjectContainer;
@@ -109,8 +111,8 @@ public class DoctorServicio extends AbstractFactoryAndRepository {
 		doctor.setMatricula(matricula);
 		doctor.setEspecialidad(especialidad);
 		doctor.setEstado(EstadoEnum.Activo);
-
 		persist(doctor);
+		container.flush();
 		return doctor;
 	}
 
