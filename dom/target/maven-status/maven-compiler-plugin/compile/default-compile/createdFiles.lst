@@ -26,7 +26,6 @@ dom/dias/DiasEnum.class
 dom/regex/RegexValidation$ValidaMail.class
 dom/dias/HorasDoctoresServicio.class
 dom/turno/QTurnoSolicitado.class
-dom/dias/QHorasDoctores.class
 dom/turno/TurnoCancelado.class
 dom/dueño/DueñoServicio$1.class
 dom/obraSocial/ObraSocialServicio$1.class

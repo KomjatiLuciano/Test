@@ -1,6 +1,7 @@
 package dom.turno;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Extension;
@@ -9,7 +10,6 @@ import javax.jdo.annotations.Persistent;
 
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.services.i18n.TranslatableString;
-import org.joda.time.DateTime;
 
 import dom.doctor.Doctor;
 import dom.paciente.Paciente;
@@ -35,15 +35,15 @@ public class Turno {
 	}
 
 	// {{ Dia (property)
-	private DateTime dia;
+	private Date dia;
 
 	@MemberOrder(sequence = "1")
 	@Column(allowsNull = "false")
-	public DateTime getDia() {
+	public Date getDia() {
 		return dia;
 	}
 
-	public void setDia(final DateTime dia) {
+	public void setDia(final Date dia) {
 		this.dia = dia;
 	}
 

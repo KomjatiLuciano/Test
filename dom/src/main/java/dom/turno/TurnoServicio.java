@@ -1,35 +1,79 @@
 package dom.turno;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.applib.annotation.ActionLayout;
 import org.apache.isis.applib.annotation.DomainService;
 import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
-import org.joda.time.DateTime;
+import org.apache.isis.applib.annotation.Where;
+import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import dom.doctor.Doctor;
 
 @DomainService(repositoryFor = Turno.class)
-@DomainServiceLayout(named = "Turno", menuBar = DomainServiceLayout.MenuBar.PRIMARY, menuOrder = "9")
+@DomainServiceLayout(named = "Doctor", menuBar = DomainServiceLayout.MenuBar.PRIMARY, menuOrder = "2")
 public class TurnoServicio extends AbstractFactoryAndRepository {
 
-	@MemberOrder(name = "Turno", sequence = "9.1")
-	public Turno crearTurno(@ParameterLayout(named = "Dia") final DateTime dia,
-			@ParameterLayout(named = "Doctor") final Doctor doctor) {
-
-		final Turno turno = newTransientInstance(Turno.class);
-
-		turno.setDia(dia);
-		turno.setDoctor(doctor);
-		persist(turno);
-		container.flush();
-		return (turno);
+	public TranslatableString title() {
+		return TranslatableString.tr("{nombre}", "nombre", "Turno: ");
 	}
 
-	// public void generarTurnos(Doctor doctor) {
+	public String iconName() {
+		return "turnos";
+	}
+
+	@MemberOrder(name = "Doctor", sequence = "5.6")
+	public String crearTurno(
+			@ParameterLayout(named = "Doctor") final Doctor doctor) {
+
+		Date fecha = new Date();
+		fecha.setHours(07);
+		fecha.setMinutes(00);
+		fecha.setSeconds(00);
+
+		for (int i = 0; i < 27; i++) {
+			final Turno turno = newTransientInstance(Turno.class);
+			Calendar c1 = GregorianCalendar.getInstance();
+			// SimpleDateFormat fechaformato = new SimpleDateFormat(
+			// "dd/MMMMM/yyyy HH:mm:ss");
+
+			turno.setDia(fecha);
+			turno.setDoctor(doctor);
+			c1 = agregarMinutos(fecha, 30);
+			fecha = c1.getTime();
+			persistIfNotAlready(turno);
+			container.flush();
+		}
+		return "Turnos agregados correctamente";
+
+		// return "Turnos generados correctamente";
+	}
+
+	// public Date generarTurnos(Doctor doctor, Date fecha) {
+	// Calendar c1 = GregorianCalendar.getInstance();
+	//
+	// for (int i = 0; i < 27; i++) {
+	// c1 = agregarMinutos(fecha, 30);
+	// fecha = c1.getTime();
+	//
+	// return fecha;
+	// }
 	//
 	// }
+
+	@ActionLayout(hidden = Where.EVERYWHERE)
+	public Calendar agregarMinutos(Date date, int minutes) {
+		Calendar calendarDate = Calendar.getInstance();
+		calendarDate.setTime(date);
+		calendarDate.add(Calendar.MINUTE, minutes);
+		return calendarDate;
+	}
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
