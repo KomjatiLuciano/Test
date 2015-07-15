@@ -1,8 +1,10 @@
 package dom.turno;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.DomainObjectContainer;
@@ -12,6 +14,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.ParameterLayout;
 import org.apache.isis.applib.annotation.Where;
+import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import dom.doctor.Doctor;
@@ -29,7 +32,7 @@ public class TurnoServicio extends AbstractFactoryAndRepository {
 	}
 
 	@MemberOrder(name = "Doctor", sequence = "5.6")
-	public String crearTurno(
+	public String crearTurnos(
 			@ParameterLayout(named = "Doctor") final Doctor doctor) {
 
 		Date fecha = new Date();
@@ -37,35 +40,41 @@ public class TurnoServicio extends AbstractFactoryAndRepository {
 		fecha.setMinutes(00);
 		fecha.setSeconds(00);
 
-		for (int i = 0; i < 27; i++) {
-			final Turno turno = newTransientInstance(Turno.class);
-			Calendar c1 = GregorianCalendar.getInstance();
-			// SimpleDateFormat fechaformato = new SimpleDateFormat(
-			// "dd/MMMMM/yyyy HH:mm:ss");
+		// Date fecha=new Date();
+		// //System.out.println("Hoy es: "+fecha);
+		//
+		// SimpleDateFormat format= new SimpleDateFormat("dd-MM-yyyy");
+		// String date=format.format(SumarFecha(fecha, 7));
+		//
+		// System.out.println("Fecha a 7 dias: "+ date);
 
-			turno.setDia(fecha);
-			turno.setDoctor(doctor);
-			c1 = agregarMinutos(fecha, 30);
-			fecha = c1.getTime();
-			persistIfNotAlready(turno);
-			container.flush();
+		for (int x = 0; x < 31; x++)
+		{
+			fecha = SumarFecha(fecha, 1);
+			
+			for (int i = 0; i < 27; i++) 
+			{
+				
+				
+				final Turno turno = newTransientInstance(Turno.class);
+				Calendar c1 = GregorianCalendar.getInstance();
+
+				// SimpleDateFormat fechaformato = new SimpleDateFormat(
+				// "dd/MMMMM/yyyy HH:mm:ss");
+
+				// SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+
+				turno.setDia(fecha);
+				turno.setDoctor(doctor);
+				c1 = agregarMinutos(fecha, 30);
+				fecha = c1.getTime();
+				persistIfNotAlready(turno);
+				container.flush();
+			}
+//			return "Turnos agregados correctamente";
 		}
 		return "Turnos agregados correctamente";
-
-		// return "Turnos generados correctamente";
 	}
-
-	// public Date generarTurnos(Doctor doctor, Date fecha) {
-	// Calendar c1 = GregorianCalendar.getInstance();
-	//
-	// for (int i = 0; i < 27; i++) {
-	// c1 = agregarMinutos(fecha, 30);
-	// fecha = c1.getTime();
-	//
-	// return fecha;
-	// }
-	//
-	// }
 
 	@ActionLayout(hidden = Where.EVERYWHERE)
 	public Calendar agregarMinutos(Date date, int minutes) {
@@ -73,6 +82,26 @@ public class TurnoServicio extends AbstractFactoryAndRepository {
 		calendarDate.setTime(date);
 		calendarDate.add(Calendar.MINUTE, minutes);
 		return calendarDate;
+	}
+
+	@ActionLayout(hidden = Where.EVERYWHERE)
+	public Date SumarFecha(Date fecha, int dias) {
+
+		Calendar calendar = Calendar.getInstance();
+
+		calendar.setTime(fecha); // Configuramos la fecha que se recibe
+
+		calendar.add(Calendar.DAY_OF_YEAR, dias); // numero de días a añadir, o
+													// restar en caso de días<0
+
+		return calendar.getTime();
+
+	}
+	
+	@ActionLayout(hidden = Where.EVERYWHERE)
+	public List<Turno> buscarTurno(String Turno) {
+		return allMatches(QueryDefault.create(Turno.class,
+				"traerTodos", Turno));
 	}
 
 	@javax.inject.Inject

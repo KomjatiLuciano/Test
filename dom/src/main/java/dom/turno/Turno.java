@@ -14,6 +14,12 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 import dom.doctor.Doctor;
 import dom.paciente.Paciente;
 
+@javax.jdo.annotations.Queries({
+	@javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "+
+			"FROM dom.turno.Turno"),
+			@javax.jdo.annotations.Query(name = "buscarNombre,Nombre", language = "JDOQL", value = "SELECT "+
+					"FROM dom.turno.Turno"+
+					"nombre.indexOf(:parametro) == 0"+ " && nombre.indexOf(:parametro) >= 0")})
 @PersistenceCapable
 public class Turno {
 

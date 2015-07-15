@@ -35,6 +35,7 @@ import dom.estado.EstadoEnum;
 import dom.grupoSanguineo.GrupoSanguineoEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
+import dom.turno.Turno;
 
 /**
  * Contiene la funcionalidad para Cargar/Listar un nuevo Paciente
@@ -162,7 +163,12 @@ public class PacienteServicio extends AbstractFactoryAndRepository {
 			}
 		});
 	}
-
+	@MemberOrder(name = "Paciente", sequence ="5.5")
+	public void reservarTruno(@ParameterLayout(named = "Turno")final Turno turno)
+	{
+		turno.getDisponible();
+		
+	}
 	// @MemberOrder(name = "Paciente", sequence = "5.5")
 	// public void buscarPaciente() {
 	//
