@@ -134,6 +134,9 @@ public class Dueño extends Persona {
 	}
 
 	// }}
+	/**
+	 * Metodo para inactivar el Dueño mediante un boton.
+	 */
 
 	public void InactivarDueño() {
 

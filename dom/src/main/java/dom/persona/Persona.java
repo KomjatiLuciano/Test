@@ -25,7 +25,6 @@ import org.joda.time.LocalDate;
 
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
-
 /**
  * Clase abstracta que representa a una persona, de la cual extenderan todos los
  * Doctores, Pacientes, Dueño y Recepcionista

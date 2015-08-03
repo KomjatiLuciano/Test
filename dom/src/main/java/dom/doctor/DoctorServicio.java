@@ -115,6 +115,12 @@ public class DoctorServicio extends AbstractFactoryAndRepository {
 		container.flush();
 		return doctor;
 	}
+	
+	/**
+	 * Obtiene una lista de Doctores
+	 * 
+	 * @return listaDeDoctores List<Doctores>
+	 */
 
 	@ActionLayout(hidden = Where.EVERYWHERE)
 	public List<Doctor> buscarDoctor(String doctor) {

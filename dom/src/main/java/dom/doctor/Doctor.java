@@ -165,7 +165,11 @@ public class Doctor extends Persona {
 	}
 
 	// }}
-
+	
+	/**
+	 * 
+	 */
+	
 	// {{ ListaTurnos (property)
 	private List<Turno> listaTurnos = new ArrayList<Turno>();
 
@@ -173,16 +177,30 @@ public class Doctor extends Persona {
 	@Column(allowsNull = "false")
 	@Persistent(mappedBy = "doctor")
 	@Join(column="doctor")
+	
+
+	/**
+	 * Pemite obtener una lista de turnos
+	 * 
+	 * @return listaturnos List<Turno>
+	 */
 	public List<Turno> getListaTurnos() {
 		return listaTurnos;
 	}
-
+	/**
+	 * Setea la lista de turnos.
+	 * 
+	 * @param List<Turnos> listaturnos
+	 *            			listaturnos
+	 */
 	public void setListaTurnos(final List<Turno> listaTurnos) {
 		this.listaTurnos = listaTurnos;
 	}
 
 	// }}
-
+	/**
+	 * Metodo para inactivar el Doctor mediante un boton.
+	 */
 	public void InactivarDoctor() {
 
 		int resp = JOptionPane.showConfirmDialog(null,

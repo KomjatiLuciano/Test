@@ -16,7 +16,6 @@
 package dom.dueño;
 
 import java.util.List;
-
 import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.DomainService;
@@ -31,7 +30,6 @@ import com.google.common.base.Predicate;
 import dom.estado.EstadoEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
-
 /**
  * Contiene la funcionalidad para Cargar/Listar un nuevo Dueño
  * 
@@ -148,11 +146,6 @@ public class DueñoServicio extends AbstractFactoryAndRepository {
 			}
 		});
 	}
-
-	// @MemberOrder(name = "Dueño", sequence = "1.4")
-	// public void buscarDueño() {
-	//
-	// }
 
 	@javax.inject.Inject
 	DomainObjectContainer container;

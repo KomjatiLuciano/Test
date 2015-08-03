@@ -170,8 +170,11 @@ public class Paciente extends Persona {
 	// this.listaTurnos = listaTurnos;
 	// }
 	//
-	// // }}
-
+	// // }
+	
+	/**
+	 * Metodo para inactivar el Paciente mediante un boton.
+	 */
 	public void InactivarPaciente() {
 
 		int resp = JOptionPane.showConfirmDialog(null,

@@ -14,7 +14,6 @@
    limitations under the License.
  */
 package dom.especialidad;
-
 /**
  * Clase enumerada, de la cual agrega la especialidad de un doctor.
  * 

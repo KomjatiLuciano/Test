@@ -1,4 +1,28 @@
+/*
+ Copyright 2015 Adamantium
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+ */
 package dom.turno;
+
+/**
+ * Entidad Turno la cual representa a los turnos que va tener disponible el Doctor.
+ * 
+ * 
+ * @author Adamantium
+ * @since 01/08/2015
+ * @version 1.0.0
+ */
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,17 +55,24 @@ import dom.paciente.Paciente;
 				+ " && nombre.indexOf(:parametro) >= 0") })
 @PersistenceCapable
 public class Turno {
-
+	/**
+	 * Representa en UI el nombre "Doctor" en carga/modificacion.
+	 */
 	public TranslatableString title() {
 		final SimpleDateFormat formatoFecha = new SimpleDateFormat(
 				"dd MMMM YYYY");
 		return TranslatableString.tr("{nombre}", "nombre", "Turno.",
 				formatoFecha.format(this.dia));
 	}
-
+	/**
+	 * Obtiene el nombre del icono.
+	 */
 	public String iconName() {
 		return "turnos";
 	}
+	/**
+	 * 
+	 */
 
 	public Turno() {
 		this.turnoDisponible = new TurnoDisponible(this);
@@ -56,16 +87,28 @@ public class Turno {
 	public String getSituacionDeTurno() {
 		return this.iEstadoTurno.nombreEstado();
 	}
+	
 
+	
 	// {{ Dia (property)
 	private Date dia;
 
 	@MemberOrder(sequence = "1")
 	@Column(allowsNull = "false")
+	/**
+	 * Pemite obtener un dia 
+	 * 
+	 * @return dia Date
+	 */
 	public Date getDia() {
 		return dia;
 	}
-
+	/**
+	 * Setea el dia que se va a crear.
+	 * 
+	 * @param dia
+	 *           dia
+	 */
 	public void setDia(final Date dia) {
 		this.dia = dia;
 	}
@@ -78,21 +121,37 @@ public class Turno {
 	@MemberOrder(sequence = "2")
 	@Persistent(mappedBy = "listaTurnos")
 	@Column(allowsNull = "false")
+	/**
+	 * Pemite obtener un doctor 
+	 * 
+	 * @return doctor Doctor
+	 */
 	public Doctor getDoctor() {
 		return doctor;
 	}
-
+	/**
+	 * Setea el  Doctor  al que se le va asignar los turnos.
+	 * 
+	 * @param doctor
+	 *         doctor
+	 */
 	public void setDoctor(final Doctor doctor) {
 		this.doctor = doctor;
 	}
 
 	// }}
-
+	/**
+	 * 
+	 * @return
+	 */
 	public Turno solicitarTurno() {
 		this.iEstadoTurno.solicitarTurno();
 		return this;
 	}
-
+/**
+ * 
+ * @return
+ */
 	public boolean hideSolicitarTurno() {
 		return true;
 		// return this.getIEstadoTurno().ocultarSolicitarTurno();

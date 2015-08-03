@@ -31,7 +31,6 @@ import com.google.common.base.Predicate;
 import dom.estado.EstadoEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
-
 /**
  * Contiene la funcionalidad para Cargar/Listar un nuev@ Recepcionista
  * 
