@@ -41,19 +41,18 @@ public class TurnoAceptado implements IEstadoTurno {
 
 	@Override
 	public void atenderTurno() {
-		// TODO Auto-generated method stub
+		this.turno.setIEstadoTurno(this.turno.getTurnoAtendido());
 
 	}
 
 	@Override
 	public void cancelarTurno() {
-		// TODO Auto-generated method stub
+		this.turno.setIEstadoTurno(this.turno.getTurnoCancelado());
 
 	}
 
 	@Override
 	public String nombreEstado() {
-		// TODO Auto-generated method stub
 		return "Turno Aceptado.";
 	}
 

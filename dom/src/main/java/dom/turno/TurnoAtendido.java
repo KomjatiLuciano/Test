@@ -1,3 +1,4 @@
+
 package dom.turno;
 
 import javax.jdo.annotations.DatastoreIdentity;
@@ -53,7 +54,6 @@ public class TurnoAtendido implements IEstadoTurno {
 
 	@Override
 	public String nombreEstado() {
-		// TODO Auto-generated method stub
 		return "Turno Atendido.";
 	}
 

@@ -23,13 +23,13 @@ public class TurnoDisponible implements IEstadoTurno {
 
 	@Override
 	public void disponerTurno() {
-		// TODO Auto-generated method stub
+		turno.setDisponible(true);
 
 	}
 
 	@Override
 	public void solicitarTurno() {
-		// TODO Auto-generated method stub
+		turno.setIEstadoTurno(turno.getTurnoSolicitado());
 
 	}
 
@@ -53,7 +53,6 @@ public class TurnoDisponible implements IEstadoTurno {
 
 	@Override
 	public String nombreEstado() {
-		// TODO Auto-generated method stub
 		return "Turno Disponible.";
 	}
 

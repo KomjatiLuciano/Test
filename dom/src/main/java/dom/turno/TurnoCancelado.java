@@ -23,7 +23,7 @@ public class TurnoCancelado implements IEstadoTurno {
 
 	@Override
 	public void disponerTurno() {
-		// TODO Auto-generated method stub
+		this.turno.setIEstadoTurno(this.turno.getTurnoDisponible());
 
 	}
 
@@ -53,7 +53,6 @@ public class TurnoCancelado implements IEstadoTurno {
 
 	@Override
 	public String nombreEstado() {
-		// TODO Auto-generated method stub
 		return "Turno Cancelado.";
 	}
 

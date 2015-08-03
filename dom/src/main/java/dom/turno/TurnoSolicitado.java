@@ -18,9 +18,7 @@ public class TurnoSolicitado implements IEstadoTurno {
 	private Turno turno;
 
 	public TurnoSolicitado(Turno turno) {
-
 		this.turno = turno;
-
 	}
 
 	@Override
@@ -31,14 +29,13 @@ public class TurnoSolicitado implements IEstadoTurno {
 
 	@Override
 	public void solicitarTurno() {
-		// TODO Auto-generated method stub
 		turno.setDisponible(false);
-
 	}
 
 	@Override
 	public void aceptarTurno() {
-		// TODO Auto-generated method stub
+		// envia el mail
+		this.turno.setIEstadoTurno(this.turno.getTurnoAceptado());
 
 	}
 
@@ -50,14 +47,13 @@ public class TurnoSolicitado implements IEstadoTurno {
 
 	@Override
 	public void cancelarTurno() {
-
-		turno.setDisponible(true);
+		this.turno.setIEstadoTurno(this.turno.getTurnoCancelado());
+		// turno.setDisponible(true);
 
 	}
 
 	@Override
 	public String nombreEstado() {
-		// TODO Auto-generated method stub
 		return "Turno Solicitado.";
 	}
 

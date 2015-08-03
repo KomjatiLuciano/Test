@@ -1,10 +1,11 @@
 package dom.turno;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import javax.inject.Named;
 
 import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.DomainObjectContainer;
@@ -18,9 +19,11 @@ import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import dom.doctor.Doctor;
+import dom.paciente.Paciente;
 
 @DomainService(repositoryFor = Turno.class)
-@DomainServiceLayout(named = "Doctor", menuBar = DomainServiceLayout.MenuBar.PRIMARY, menuOrder = "2")
+@DomainServiceLayout(named = "Doctor", menuBar = DomainServiceLayout.MenuBar.PRIMARY, menuOrder = "50")
+@Named("Turno")
 public class TurnoServicio extends AbstractFactoryAndRepository {
 
 	public TranslatableString title() {
@@ -31,9 +34,12 @@ public class TurnoServicio extends AbstractFactoryAndRepository {
 		return "turnos";
 	}
 
-	@MemberOrder(name = "Doctor", sequence = "5.6")
+	@SuppressWarnings("deprecation")
+	@MemberOrder(name = "Doctor", sequence = "50")
 	public String crearTurnos(
-			@ParameterLayout(named = "Doctor") final Doctor doctor) {
+			@ParameterLayout(named = "Doctor") final Doctor doctor
+	// ,@ParameterLayout(named = "Paciente") final Paciente paciente
+	) {
 
 		Date fecha = new Date();
 		fecha.setHours(07);
@@ -45,17 +51,16 @@ public class TurnoServicio extends AbstractFactoryAndRepository {
 		//
 		// SimpleDateFormat format= new SimpleDateFormat("dd-MM-yyyy");
 		// String date=format.format(SumarFecha(fecha, 7));
-		//
-		// System.out.println("Fecha a 7 dias: "+ date);
 
-		for (int x = 0; x < 31; x++)
-		{
+		for (int x = 0; x < 30; x++) {
 			fecha = SumarFecha(fecha, 1);
-			
-			for (int i = 0; i < 27; i++) 
-			{
-				
-				
+
+			fecha.setHours(07);
+			fecha.setMinutes(00);
+			fecha.setSeconds(00);
+
+			for (int i = 0; i < 27; i++) {
+
 				final Turno turno = newTransientInstance(Turno.class);
 				Calendar c1 = GregorianCalendar.getInstance();
 
@@ -66,12 +71,15 @@ public class TurnoServicio extends AbstractFactoryAndRepository {
 
 				turno.setDia(fecha);
 				turno.setDoctor(doctor);
+				// turno.setPaciente(paciente);
+				// paciente.getListaTurnos().add(turno);
+				doctor.getListaTurnos().add(turno);
 				c1 = agregarMinutos(fecha, 30);
 				fecha = c1.getTime();
 				persistIfNotAlready(turno);
 				container.flush();
 			}
-//			return "Turnos agregados correctamente";
+			// return "Turnos agregados correctamente";
 		}
 		return "Turnos agregados correctamente";
 	}
@@ -97,11 +105,15 @@ public class TurnoServicio extends AbstractFactoryAndRepository {
 		return calendar.getTime();
 
 	}
-	
+
 	@ActionLayout(hidden = Where.EVERYWHERE)
 	public List<Turno> buscarTurno(String Turno) {
-		return allMatches(QueryDefault.create(Turno.class,
-				"traerTodos", Turno));
+		return allMatches(QueryDefault.create(Turno.class, "traerTodos", Turno));
+	}
+
+	@MemberOrder(name = "Doctor", sequence = "50")
+	public List<Turno> listarTurnos() {
+		return container.allInstances(Turno.class);
 	}
 
 	@javax.inject.Inject

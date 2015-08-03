@@ -15,8 +15,13 @@
  */
 package dom.paciente;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.jdo.annotations.Column;
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
+import javax.jdo.annotations.Persistent;
 import javax.swing.JOptionPane;
 
 import org.apache.isis.applib.annotation.DomainObject;
@@ -26,6 +31,7 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 import dom.estado.EstadoEnum;
 import dom.grupoSanguineo.GrupoSanguineoEnum;
 import dom.persona.Persona;
+import dom.turno.Turno;
 
 /**
  * Entidad Paciente la cual representa a cualquier persona que se haga atender
@@ -148,6 +154,23 @@ public class Paciente extends Persona {
 	}
 
 	// }}
+
+	// // {{ ListaTurnos (property)
+	// private List<Turno> listaTurnos = new ArrayList<Turno>();
+	//
+	// @MemberOrder(sequence = "13")
+	// @Column(allowsNull = "false")
+	// @Persistent(mappedBy = "doctor")
+	// @Join(column = "doctor")
+	// public List<Turno> getListaTurnos() {
+	// return listaTurnos;
+	// }
+	//
+	// public void setListaTurnos(final List<Turno> listaTurnos) {
+	// this.listaTurnos = listaTurnos;
+	// }
+	//
+	// // }}
 
 	public void InactivarPaciente() {
 

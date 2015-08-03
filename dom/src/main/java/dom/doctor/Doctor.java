@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.jdo.annotations.Column;
+import javax.jdo.annotations.Join;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 import javax.swing.JOptionPane;
@@ -171,6 +172,7 @@ public class Doctor extends Persona {
 	@MemberOrder(sequence = "14")
 	@Column(allowsNull = "false")
 	@Persistent(mappedBy = "doctor")
+	@Join(column="doctor")
 	public List<Turno> getListaTurnos() {
 		return listaTurnos;
 	}

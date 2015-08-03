@@ -1,25 +1,34 @@
 package dom.turno;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import javax.annotation.CheckReturnValue;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
+import org.apache.isis.applib.annotation.ActionLayout;
+import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Parameter;
+import org.apache.isis.applib.annotation.PropertyLayout;
+import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import dom.doctor.Doctor;
 import dom.paciente.Paciente;
 
 @javax.jdo.annotations.Queries({
-	@javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "+
-			"FROM dom.turno.Turno"),
-			@javax.jdo.annotations.Query(name = "buscarNombre,Nombre", language = "JDOQL", value = "SELECT "+
-					"FROM dom.turno.Turno"+
-					"nombre.indexOf(:parametro) == 0"+ " && nombre.indexOf(:parametro) >= 0")})
+		@javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.turno.Turno"),
+		@javax.jdo.annotations.Query(name = "buscarNombre,Nombre", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.turno.Turno"
+				+ "nombre.indexOf(:parametro) == 0"
+				+ " && nombre.indexOf(:parametro) >= 0") })
 @PersistenceCapable
 public class Turno {
 
@@ -30,6 +39,10 @@ public class Turno {
 				formatoFecha.format(this.dia));
 	}
 
+	public String iconName() {
+		return "turnos";
+	}
+
 	public Turno() {
 		this.turnoDisponible = new TurnoDisponible(this);
 		this.turnoSolicitado = new TurnoSolicitado(this);
@@ -37,7 +50,11 @@ public class Turno {
 		this.turnoAtendido = new TurnoAtendido(this);
 		this.turnoCancelado = new TurnoCancelado(this);
 
-		this.iEstadoTurno = this.getTurnoDisponible();
+		this.setIEstadoTurno(this.getTurnoDisponible());
+	}
+
+	public String getSituacionDeTurno() {
+		return this.iEstadoTurno.nombreEstado();
 	}
 
 	// {{ Dia (property)
@@ -71,18 +88,28 @@ public class Turno {
 
 	// }}
 
+	public Turno solicitarTurno() {
+		this.iEstadoTurno.solicitarTurno();
+		return this;
+	}
+
+	public boolean hideSolicitarTurno() {
+		return true;
+		// return this.getIEstadoTurno().ocultarSolicitarTurno();
+	}
+
 	// {{ Paciente (property)
-	private Paciente paciente;
-
-	@MemberOrder(sequence = "3")
-	@Column(allowsNull = "true")
-	public Paciente getPaciente() {
-		return paciente;
-	}
-
-	public void setPaciente(final Paciente paciente) {
-		this.paciente = paciente;
-	}
+	// private Paciente paciente;
+	//
+	// @MemberOrder(sequence = "3")
+	// @Column(allowsNull = "true")
+	// public Paciente getPaciente() {
+	// return paciente;
+	// }
+	//
+	// public void setPaciente(final Paciente paciente) {
+	// this.paciente = paciente;
+	// }
 
 	// }}
 
@@ -104,6 +131,8 @@ public class Turno {
 	// {{ IEstadoTurno (property)
 	private IEstadoTurno iEstadoTurno;
 
+	// @ActionLayout(hidden=Where.EVERYWHERE)
+	@PropertyLayout(hidden = Where.EVERYWHERE)
 	@MemberOrder(sequence = "5")
 	@Column(allowsNull = "false")
 	@Persistent(extensions = {
@@ -130,6 +159,7 @@ public class Turno {
 	// {{ TurnoDisponible (property)
 	private TurnoDisponible turnoDisponible;
 
+	@PropertyLayout(hidden = Where.EVERYWHERE)
 	@MemberOrder(sequence = "6")
 	@Column(allowsNull = "false")
 	public TurnoDisponible getTurnoDisponible() {
@@ -145,6 +175,7 @@ public class Turno {
 	// {{ TurnoSolicitado (property)
 	private TurnoSolicitado turnoSolicitado;
 
+	@PropertyLayout(hidden = Where.EVERYWHERE)
 	@MemberOrder(sequence = "7")
 	@Column(allowsNull = "false")
 	public TurnoSolicitado getTurnoSolicitado() {
@@ -160,6 +191,7 @@ public class Turno {
 	// {{ TurnoAceptado (property)
 	private TurnoAceptado turnoAceptado;
 
+	@PropertyLayout(hidden = Where.EVERYWHERE)
 	@MemberOrder(sequence = "8")
 	@Column(allowsNull = "false")
 	public TurnoAceptado getTurnoAceptado() {
@@ -175,6 +207,7 @@ public class Turno {
 	// {{ TurnoAtendido (property)
 	private TurnoAtendido turnoAtendido;
 
+	@PropertyLayout(hidden = Where.EVERYWHERE)
 	@MemberOrder(sequence = "9")
 	@Column(allowsNull = "false")
 	public TurnoAtendido getTurnoAtendido() {
@@ -190,6 +223,7 @@ public class Turno {
 	// {{ TurnoCancelado (property)
 	private TurnoCancelado turnoCancelado;
 
+	@PropertyLayout(hidden = Where.EVERYWHERE)
 	@MemberOrder(sequence = "10")
 	@Column(allowsNull = "false")
 	public TurnoCancelado getTurnoCancelado() {

@@ -29,7 +29,6 @@ public class QTurno extends org.datanucleus.api.jdo.query.PersistableExpressionI
 
     public final DateTimeExpression dia;
     public final dom.doctor.QDoctor doctor;
-    public final dom.paciente.QPaciente paciente;
     public final ObjectExpression<java.lang.Boolean> disponible;
     public final ObjectExpression<dom.turno.IEstadoTurno> iEstadoTurno;
     public final dom.turno.QTurnoDisponible turnoDisponible;
@@ -49,14 +48,6 @@ public class QTurno extends org.datanucleus.api.jdo.query.PersistableExpressionI
         else
         {
             this.doctor = null;
-        }
-        if (depth > 0)
-        {
-            this.paciente = new dom.paciente.QPaciente(this, "paciente", depth-1);
-        }
-        else
-        {
-            this.paciente = null;
         }
         this.disponible = new ObjectExpressionImpl<java.lang.Boolean>(this, "disponible");
         this.iEstadoTurno = new ObjectExpressionImpl<dom.turno.IEstadoTurno>(this, "iEstadoTurno");
@@ -107,7 +98,6 @@ public class QTurno extends org.datanucleus.api.jdo.query.PersistableExpressionI
         super(type, name, exprType);
         this.dia = new DateTimeExpressionImpl(this, "dia");
         this.doctor = new dom.doctor.QDoctor(this, "doctor", 5);
-        this.paciente = new dom.paciente.QPaciente(this, "paciente", 5);
         this.disponible = new ObjectExpressionImpl<java.lang.Boolean>(this, "disponible");
         this.iEstadoTurno = new ObjectExpressionImpl<dom.turno.IEstadoTurno>(this, "iEstadoTurno");
         this.turnoDisponible = new dom.turno.QTurnoDisponible(this, "turnoDisponible", 5);
