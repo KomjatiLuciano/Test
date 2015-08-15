@@ -50,6 +50,9 @@ import dom.turno.Turno;
 		@javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.doctor.Doctor "),
 
+		@javax.jdo.annotations.Query(name = "traerPorEspecialidad", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.doctor.Doctor where especialidad == :especialidad"),
+
 		@javax.jdo.annotations.Query(name = "buscarNombre,Apellido,Id", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.doctor.Doctor "
 				+ "WHERE documento == :parametro || nombre.indexOf(:parametro) == 0 "
@@ -165,20 +168,18 @@ public class Doctor extends Persona {
 	}
 
 	// }}
-	
+
 	/**
 	 * 
 	 */
-	
+
 	// {{ ListaTurnos (property)
 	private List<Turno> listaTurnos = new ArrayList<Turno>();
 
 	@MemberOrder(sequence = "14")
 	@Column(allowsNull = "false")
 	@Persistent(mappedBy = "doctor")
-	@Join(column="doctor")
-	
-
+	@Join(column = "doctor")
 	/**
 	 * Pemite obtener una lista de turnos
 	 * 
@@ -187,11 +188,12 @@ public class Doctor extends Persona {
 	public List<Turno> getListaTurnos() {
 		return listaTurnos;
 	}
+
 	/**
 	 * Setea la lista de turnos.
 	 * 
-	 * @param List<Turnos> listaturnos
-	 *            			listaturnos
+	 * @param List
+	 *            <Turnos> listaturnos listaturnos
 	 */
 	public void setListaTurnos(final List<Turno> listaTurnos) {
 		this.listaTurnos = listaTurnos;

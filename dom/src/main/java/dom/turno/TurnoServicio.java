@@ -34,6 +34,7 @@ import org.apache.isis.applib.query.QueryDefault;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import dom.doctor.Doctor;
+import dom.especialidad.EspecialidadEnum;
 import dom.paciente.Paciente;
 
 @DomainService(repositoryFor = Turno.class)
@@ -47,6 +48,34 @@ public class TurnoServicio extends AbstractFactoryAndRepository {
 
 	public String iconName() {
 		return "turnos";
+	}
+
+	@MemberOrder(name = "Doctor", sequence = "75")
+	public String nuevoTurnoPaciente(final EspecialidadEnum especialidad,
+			Doctor doctor, Date fecha1, Date fecha2, Turno turno) {
+
+		return "ok";
+
+	}
+
+	public EspecialidadEnum default0NuevoTurnoPaciente() {
+
+		return EspecialidadEnum.Clinica_General;
+
+	}
+
+	public List<Doctor> choices1NuevoTurnoPaciente(
+			final EspecialidadEnum especialidad) {
+
+		return container.allMatches(QueryDefault.create(Doctor.class,
+				"traerPorEspecialidad", "especialidad", especialidad));
+
+	}
+
+	public List<Turno> choices2NuevoTurnoPaciente(
+			final EspecialidadEnum especialidad, Doctor doctor) {
+		return container.allMatches(QueryDefault.create(Turno.class,
+				"traerTurnos"));
 	}
 
 	@SuppressWarnings("deprecation")

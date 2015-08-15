@@ -49,27 +49,40 @@ import dom.paciente.Paciente;
 @javax.jdo.annotations.Queries({
 		@javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.turno.Turno"),
+
+		// @javax.jdo.annotations.Query(name = "traerTurnosPorFechas", language
+		// = "JDOQL", value = "SELECT "
+		// + "FROM dom.turno.Turno where dia > :fecha1 && dia < :fecha2"),
+
+		@javax.jdo.annotations.Query(name = "traerTurnos", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.turno.Turno"),
+
 		@javax.jdo.annotations.Query(name = "buscarNombre,Nombre", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.turno.Turno"
 				+ "nombre.indexOf(:parametro) == 0"
 				+ " && nombre.indexOf(:parametro) >= 0") })
 @PersistenceCapable
 public class Turno {
+
 	/**
 	 * Representa en UI el nombre "Doctor" en carga/modificacion.
 	 */
 	public TranslatableString title() {
 		final SimpleDateFormat formatoFecha = new SimpleDateFormat(
-				"dd MMMM YYYY");
-		return TranslatableString.tr("{nombre}", "nombre", "Turno.",
-				formatoFecha.format(this.dia));
+				"dd MMMM YYYY HH:mm");
+		// return TranslatableString.tr("{nombre}", "nombre", "Turno.",
+		// formatoFecha.format(this.dia));
+		return TranslatableString.tr("{nombre}", "nombre", "Turno "
+				+ formatoFecha.format(this.getDia()));
 	}
+
 	/**
 	 * Obtiene el nombre del icono.
 	 */
 	public String iconName() {
 		return "turnos";
 	}
+
 	/**
 	 * 
 	 */
@@ -87,9 +100,7 @@ public class Turno {
 	public String getSituacionDeTurno() {
 		return this.iEstadoTurno.nombreEstado();
 	}
-	
 
-	
 	// {{ Dia (property)
 	private Date dia;
 
@@ -103,11 +114,12 @@ public class Turno {
 	public Date getDia() {
 		return dia;
 	}
+
 	/**
 	 * Setea el dia que se va a crear.
 	 * 
 	 * @param dia
-	 *           dia
+	 *            dia
 	 */
 	public void setDia(final Date dia) {
 		this.dia = dia;
@@ -129,11 +141,12 @@ public class Turno {
 	public Doctor getDoctor() {
 		return doctor;
 	}
+
 	/**
-	 * Setea el  Doctor  al que se le va asignar los turnos.
+	 * Setea el Doctor al que se le va asignar los turnos.
 	 * 
 	 * @param doctor
-	 *         doctor
+	 *            doctor
 	 */
 	public void setDoctor(final Doctor doctor) {
 		this.doctor = doctor;
@@ -148,10 +161,11 @@ public class Turno {
 		this.iEstadoTurno.solicitarTurno();
 		return this;
 	}
-/**
- * 
- * @return
- */
+
+	/**
+	 * 
+	 * @return
+	 */
 	public boolean hideSolicitarTurno() {
 		return true;
 		// return this.getIEstadoTurno().ocultarSolicitarTurno();

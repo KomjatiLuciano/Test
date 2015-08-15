@@ -20,11 +20,16 @@ import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
+import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.MemberOrder;
+import org.apache.isis.applib.annotation.Property;
 import org.joda.time.LocalDate;
 
+import dom.proviniciasCiudades.CiudadEnum;
+import dom.proviniciasCiudades.ProvinciaEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
+
 /**
  * Clase abstracta que representa a una persona, de la cual extenderan todos los
  * Doctores, Pacientes, Dueño y Recepcionista
@@ -338,4 +343,32 @@ public abstract class Persona {
 			return null;
 		}
 	}
+
+	// private ProvinciaEnum provincia;
+	//
+	// @javax.jdo.annotations.Column(allowsNull = "false")
+	// @Property(editing = Editing.DISABLED, editingDisabledReason =
+	// "Utilice la acción para actualizar tanto provincia como ciudad")
+	// public ProvinciaEnum getProvincia() {
+	// return provincia;
+	// }
+	//
+	// public void setProvincia(final ProvinciaEnum provincia) {
+	// this.provincia = provincia;
+	// }
+
+	// //////////////////////////////////////
+
+	// private CiudadEnum ciudad;
+	//
+	// @javax.jdo.annotations.Column(allowsNull = "true")
+	// @Property(editing = Editing.DISABLED, editingDisabledReason =
+	// "Utilice la acción para actualizar tanto provincia como ciudad")
+	// public CiudadEnum getCiudad() {
+	// return ciudad;
+	// }
+	//
+	// public void setCiudad(final CiudadEnum ciudad) {
+	// this.ciudad = ciudad;
+	// }
 }
