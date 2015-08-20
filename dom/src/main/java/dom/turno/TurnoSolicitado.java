@@ -30,10 +30,10 @@ public class TurnoSolicitado implements IEstadoTurno {
 		return TranslatableString.tr("{nombre}", "nombre", "Turno Solicitado.");
 	}
 
-	private Turno turno;
+	private Agenda agenda;
 
-	public TurnoSolicitado(Turno turno) {
-		this.turno = turno;
+	public TurnoSolicitado(Agenda agenda) {
+		this.agenda = agenda;
 	}
 
 	@Override
@@ -44,13 +44,13 @@ public class TurnoSolicitado implements IEstadoTurno {
 
 	@Override
 	public void solicitarTurno() {
-		turno.setDisponible(false);
+		agenda.setDisponible(false);
 	}
 
 	@Override
 	public void aceptarTurno() {
 		// envia el mail
-		this.turno.setIEstadoTurno(this.turno.getTurnoAceptado());
+		this.agenda.setIEstadoTurno(this.agenda.getTurnoAceptado());
 
 	}
 
@@ -62,7 +62,7 @@ public class TurnoSolicitado implements IEstadoTurno {
 
 	@Override
 	public void cancelarTurno() {
-		this.turno.setIEstadoTurno(this.turno.getTurnoCancelado());
+		this.agenda.setIEstadoTurno(this.agenda.getTurnoCancelado());
 		// turno.setDisponible(true);
 
 	}

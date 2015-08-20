@@ -30,21 +30,21 @@ public class TurnoDisponible implements IEstadoTurno {
 		return TranslatableString.tr("{nombre}", "nombre", "Turno Disponible.");
 	}
 
-	private Turno turno;
+	private Agenda agenda;
 
-	public TurnoDisponible(Turno turno) {
-		this.turno = turno;
+	public TurnoDisponible(Agenda agenda) {
+		this.agenda = agenda;
 	}
 
 	@Override
 	public void disponerTurno() {
-		turno.setDisponible(true);
+		agenda.setDisponible(true);
 
 	}
 
 	@Override
 	public void solicitarTurno() {
-		turno.setIEstadoTurno(turno.getTurnoSolicitado());
+		agenda.setIEstadoTurno(agenda.getTurnoSolicitado());
 
 	}
 

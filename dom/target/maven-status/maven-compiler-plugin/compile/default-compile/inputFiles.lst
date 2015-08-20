@@ -18,7 +18,6 @@
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/dueño/Dueño.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/paciente/PacienteServicio.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/dias/DiasDoctoresServicio.java
-/home/luciano/workspace/Adamantium/dom/src/main/java/dom/turno/TurnoServicio.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/proviniciasCiudades/IProvincia.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/regex/RegexValidation.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/estado/IEstado.java
@@ -29,17 +28,17 @@
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/proviniciasCiudades/IRioNegro.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/recepcionista/RecepcionistaServicio.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/dias/HorasDoctoresServicio.java
+/home/luciano/workspace/Adamantium/dom/src/main/java/dom/turno/Agenda.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/turno/TurnoAceptado.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/tipoDocumento/ITipoDocumento.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/tipoDocumento/TipoDocumentoEnum.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/obraSocial/ObraSocialServicio.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/especialidad/IEspecialidad.java
-/home/luciano/workspace/Adamantium/dom/src/main/java/dom/turno/Turno.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/estado/EstadoEnum.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/turno/IEstadoTurno.java
+/home/luciano/workspace/Adamantium/dom/src/main/java/dom/turno/AgendaServicio.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/tipoDeSexo/TipoDeSexoEnum.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/dias/HorasMañanaEnum.java
-/home/luciano/workspace/Adamantium/dom/src/main/java/dom/turno/Prueba.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/dias/DiasEnum.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/dias/HorasTardeEnum.java
 /home/luciano/workspace/Adamantium/dom/src/main/java/dom/tipoDeSexo/ITipoDeSexo.java

@@ -31,7 +31,7 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
 import dom.persona.Persona;
-import dom.turno.Turno;
+import dom.turno.Agenda;
 
 /**
  * Entidad Doctor la cual representa a cualquier persona que atienda en el
@@ -174,7 +174,7 @@ public class Doctor extends Persona {
 	 */
 
 	// {{ ListaTurnos (property)
-	private List<Turno> listaTurnos = new ArrayList<Turno>();
+	private List<Agenda> listaTurnos = new ArrayList<Agenda>();
 
 	@MemberOrder(sequence = "14")
 	@Column(allowsNull = "false")
@@ -185,7 +185,7 @@ public class Doctor extends Persona {
 	 * 
 	 * @return listaturnos List<Turno>
 	 */
-	public List<Turno> getListaTurnos() {
+	public List<Agenda> getListaTurnos() {
 		return listaTurnos;
 	}
 
@@ -195,7 +195,7 @@ public class Doctor extends Persona {
 	 * @param List
 	 *            <Turnos> listaturnos listaturnos
 	 */
-	public void setListaTurnos(final List<Turno> listaTurnos) {
+	public void setListaTurnos(final List<Agenda> listaTurnos) {
 		this.listaTurnos = listaTurnos;
 	}
 

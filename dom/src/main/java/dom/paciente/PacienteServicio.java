@@ -31,11 +31,14 @@ import org.joda.time.LocalDate;
 
 import com.google.common.base.Predicate;
 
+import dom.doctor.Doctor;
+import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
 import dom.grupoSanguineo.GrupoSanguineoEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
-import dom.turno.Turno;
+import dom.turno.Agenda;
+
 /**
  * Contiene la funcionalidad para Cargar/Listar un nuevo Paciente
  * 
@@ -78,6 +81,35 @@ public class PacienteServicio extends AbstractFactoryAndRepository {
 	 *
 	 * @return paciente
 	 */
+
+	@MemberOrder(name = "Paciente", sequence = "75")
+	public String reservarTurno(final EspecialidadEnum especialidad,
+			Doctor doctor, Agenda agenda, Paciente paciente) {
+
+		return "Turno de Paciente agregado correctamente.";
+
+	}
+
+	public EspecialidadEnum default0ReservarTurno() {
+
+		return EspecialidadEnum.Clinica_General;
+
+	}
+
+	public List<Doctor> choices1ReservarTurno(
+			final EspecialidadEnum especialidad) {
+
+		return container.allMatches(QueryDefault.create(Doctor.class,
+				"traerPorEspecialidad", "especialidad", especialidad));
+
+	}
+
+	public List<Agenda> choices2ReservarTurno(
+			final EspecialidadEnum especialidad, Doctor doctor) {
+		return container.allMatches(QueryDefault.create(Agenda.class,
+				"traerTurnos"));
+	}
+
 	@MemberOrder(name = "Paciente", sequence = "5.1")
 	public Paciente crearPaciente(
 			@ParameterLayout(named = "Legajo") final int legajo,
@@ -162,18 +194,15 @@ public class PacienteServicio extends AbstractFactoryAndRepository {
 			}
 		});
 	}
+
 	/**
 	 * 
 	 * @param turno
 	 */
-	@MemberOrder(name = "Paciente", sequence ="5.5")
-	public void reservarTruno(@ParameterLayout(named = "Turno")final Turno turno)
-	{
-		turno.getDisponible();
-		
-	}
 	// @MemberOrder(name = "Paciente", sequence = "5.5")
-	// public void buscarPaciente() {
+	// public void reservarTruno(
+	// @ParameterLayout(named = "Turno") final Agenda turno) {
+	// turno.getDisponible();
 	//
 	// }
 

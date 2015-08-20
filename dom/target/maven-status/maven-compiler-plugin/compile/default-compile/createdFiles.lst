@@ -3,6 +3,7 @@ dom/recepcionista/RecepcionistaServicio$1.class
 dom/dias/DiasDoctoresServicio.class
 dom/dueño/DueñoServicio$2.class
 dom/turno/TurnoDisponible.class
+dom/turno/AgendaServicio.class
 dom/proviniciasCiudades/ProvinciaEnum$1.class
 dom/grupoSanguineo/IGrupoSanguineo.class
 dom/obraSocial/ObraSocialServicio$2.class
@@ -13,7 +14,6 @@ dom/proviniciasCiudades/ProvinciaEnum.class
 dom/paciente/PacienteServicio.class
 dom/doctor/DoctorServicio$1.class
 dom/persona/QPersona.class
-dom/turno/QTurno.class
 dom/turno/QTurnoAceptado.class
 dom/especialidad/IEspecialidad.class
 dom/dueño/Dueño.class
@@ -42,6 +42,7 @@ dom/dias/HorasDoctores.class
 dom/regex/RegexValidation$ValidaNumCarnet.class
 dom/dias/IDiasEnum.class
 dom/proviniciasCiudades/IProvincia.class
+dom/turno/Agenda.class
 dom/turno/QTurnoDisponible.class
 dom/proviniciasCiudades/CiudadEnum.class
 dom/estado/EstadoEnum.class
@@ -50,7 +51,6 @@ dom/proviniciasCiudades/IRioNegro.class
 dom/proviniciasCiudades/RioNegroEnum.class
 dom/turno/TurnoAtendido.class
 dom/obraSocial/QObraSocial.class
-dom/turno/Turno.class
 dom/doctor/QDoctor.class
 dom/persona/Persona.class
 dom/especialidad/EspecialidadEnum.class
@@ -64,13 +64,12 @@ dom/turno/QTurnoCancelado.class
 dom/doctor/DoctorServicio$2.class
 dom/dias/DiasDoctores.class
 dom/turno/TurnoAceptado.class
-dom/turno/TurnoServicio.class
 dom/dias/HorasMañanaEnum.class
 dom/estado/IEstado.class
 dom/obraSocial/ObraSocial.class
+dom/turno/QAgenda.class
 dom/turno/QTurnoAtendido.class
 dom/regex/RegexValidation.class
-dom/turno/Prueba.class
 dom/recepcionista/RecepcionistaServicio.class
 dom/doctor/DoctorServicio.class
 dom/dias/IHorasMañanaEnum.class

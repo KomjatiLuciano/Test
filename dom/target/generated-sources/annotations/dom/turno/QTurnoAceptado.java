@@ -27,24 +27,24 @@ public class QTurnoAceptado extends org.datanucleus.api.jdo.query.PersistableExp
         return new QTurnoAceptado(TurnoAceptado.class, name, ExpressionType.VARIABLE);
     }
 
-    public final dom.turno.QTurno turno;
+    public final dom.turno.QAgenda agenda;
 
     public QTurnoAceptado(PersistableExpression parent, String name, int depth)
     {
         super(parent, name);
         if (depth > 0)
         {
-            this.turno = new dom.turno.QTurno(this, "turno", depth-1);
+            this.agenda = new dom.turno.QAgenda(this, "agenda", depth-1);
         }
         else
         {
-            this.turno = null;
+            this.agenda = null;
         }
     }
 
     public QTurnoAceptado(Class type, String name, org.datanucleus.api.jdo.query.ExpressionType exprType)
     {
         super(type, name, exprType);
-        this.turno = new dom.turno.QTurno(this, "turno", 5);
+        this.agenda = new dom.turno.QAgenda(this, "agenda", 5);
     }
 }

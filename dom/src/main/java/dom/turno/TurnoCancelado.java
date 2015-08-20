@@ -30,15 +30,15 @@ public class TurnoCancelado implements IEstadoTurno {
 		return TranslatableString.tr("{nombre}", "nombre", "Turno Cancelado.");
 	}
 
-	private Turno turno;
+	private Agenda agenda;
 
-	public TurnoCancelado(Turno turno) {
-		this.turno = turno;
+	public TurnoCancelado(Agenda agenda) {
+		this.agenda = agenda;
 	}
 
 	@Override
 	public void disponerTurno() {
-		this.turno.setIEstadoTurno(this.turno.getTurnoDisponible());
+		this.agenda.setIEstadoTurno(this.agenda.getTurnoDisponible());
 
 	}
 

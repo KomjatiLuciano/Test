@@ -31,7 +31,7 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 import dom.estado.EstadoEnum;
 import dom.grupoSanguineo.GrupoSanguineoEnum;
 import dom.persona.Persona;
-import dom.turno.Turno;
+import dom.turno.Agenda;
 
 /**
  * Entidad Paciente la cual representa a cualquier persona que se haga atender
