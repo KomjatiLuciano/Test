@@ -15,20 +15,24 @@
  */
 package dom.persona;
 
+import java.util.List;
+
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
-import org.apache.isis.applib.annotation.Editing;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Property;
+import org.apache.isis.applib.query.QueryDefault;
 import org.joda.time.LocalDate;
 
-import dom.proviniciasCiudades.CiudadEnum;
+import dom.doctor.Doctor;
+import dom.especialidad.EspecialidadEnum;
 import dom.proviniciasCiudades.ProvinciaEnum;
+import dom.proviniciasCiudades.RioNegroEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
+import dom.turno.Agenda;
 
 /**
  * Clase abstracta que representa a una persona, de la cual extenderan todos los
@@ -43,6 +47,14 @@ import dom.tipoDocumento.TipoDocumentoEnum;
 // @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 // ----------------------------------------------------------------
 // Segunda Estrategia: Una tabla por cada clase, solo las subclases
+
+@javax.jdo.annotations.Queries({
+
+		@javax.jdo.annotations.Query(name = "traerPorProvincia", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.persona.Persona where provincia == :provincia"),
+
+		@javax.jdo.annotations.Query(name = "traerCiudades", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.persona.Persona") })
 @PersistenceCapable
 @Inheritance(strategy = InheritanceStrategy.SUBCLASS_TABLE)
 public abstract class Persona {
@@ -199,7 +211,6 @@ public abstract class Persona {
 	 */
 	@MemberOrder(sequence = "6")
 	@Column(allowsNull = "false")
-	// @Unique
 	public String getDocumento() {
 		return documento;
 	}
@@ -229,6 +240,36 @@ public abstract class Persona {
 		}
 	}
 
+	// {{ Provincia (property)
+	private ProvinciaEnum provincia;
+
+	@MemberOrder(sequence = "7")
+	@Column(allowsNull = "false")
+	public ProvinciaEnum getProvincia() {
+		return provincia;
+	}
+
+	public void setProvincia(final ProvinciaEnum provincia) {
+		this.provincia = provincia;
+	}
+
+	// }}
+
+	// {{ Ciudad (property)
+	private String ciudad;
+
+	@MemberOrder(sequence = "8")
+	@Column(allowsNull = "false")
+	public String getCiudad() {
+		return ciudad;
+	}
+
+	public void setCiudad(final String ciudad) {
+		this.ciudad = ciudad;
+	}
+
+	// }}
+
 	private String direccion;
 
 	/**
@@ -236,7 +277,7 @@ public abstract class Persona {
 	 * 
 	 * @return direccion String
 	 */
-	@MemberOrder(sequence = "7")
+	@MemberOrder(sequence = "9")
 	@Column(allowsNull = "false")
 	public String getDireccion() {
 		return direccion;
@@ -274,7 +315,7 @@ public abstract class Persona {
 	 * 
 	 * @return correo String
 	 */
-	@MemberOrder(sequence = "8")
+	@MemberOrder(sequence = "10")
 	@Column(allowsNull = "false")
 	public String getCorreo() {
 		return correo;
@@ -313,7 +354,7 @@ public abstract class Persona {
 	 * 
 	 * @return telefono String
 	 */
-	@MemberOrder(sequence = "9")
+	@MemberOrder(sequence = "11")
 	@Column(allowsNull = "false")
 	public String getTelefono() {
 		return telefono;
@@ -344,31 +385,4 @@ public abstract class Persona {
 		}
 	}
 
-	// private ProvinciaEnum provincia;
-	//
-	// @javax.jdo.annotations.Column(allowsNull = "false")
-	// @Property(editing = Editing.DISABLED, editingDisabledReason =
-	// "Utilice la acción para actualizar tanto provincia como ciudad")
-	// public ProvinciaEnum getProvincia() {
-	// return provincia;
-	// }
-	//
-	// public void setProvincia(final ProvinciaEnum provincia) {
-	// this.provincia = provincia;
-	// }
-
-	// //////////////////////////////////////
-
-	// private CiudadEnum ciudad;
-	//
-	// @javax.jdo.annotations.Column(allowsNull = "true")
-	// @Property(editing = Editing.DISABLED, editingDisabledReason =
-	// "Utilice la acción para actualizar tanto provincia como ciudad")
-	// public CiudadEnum getCiudad() {
-	// return ciudad;
-	// }
-	//
-	// public void setCiudad(final CiudadEnum ciudad) {
-	// this.ciudad = ciudad;
-	// }
 }

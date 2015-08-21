@@ -16,6 +16,7 @@
 package dom.dueño;
 
 import java.util.List;
+
 import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.DomainObjectContainer;
 import org.apache.isis.applib.annotation.DomainService;
@@ -28,8 +29,10 @@ import org.joda.time.LocalDate;
 import com.google.common.base.Predicate;
 
 import dom.estado.EstadoEnum;
+import dom.proviniciasCiudades.ProvinciaEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
+
 /**
  * Contiene la funcionalidad para Cargar/Listar un nuevo Dueño
  * 
@@ -77,6 +80,8 @@ public class DueñoServicio extends AbstractFactoryAndRepository {
 			@ParameterLayout(named = "Fecha de Nacimiento") final LocalDate fechaNacimiento,
 			@ParameterLayout(named = "Tipo De Documento") final TipoDocumentoEnum tipoDocumento,
 			@ParameterLayout(named = "Documento") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaDoc.DOCUMENTO) final String documento,
+			@ParameterLayout(named = "Provincia") final ProvinciaEnum provincia,
+			@ParameterLayout(named = "Ciudad") final String ciudad,
 			@ParameterLayout(named = "Direccion") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaNombres.REFERENCIA) final String direccion,
 			@ParameterLayout(named = "Correo") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaMail.EMAIL) final String correo,
 			@ParameterLayout(named = "Telefono") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaTel.NUMEROTEL) final String telefono,
@@ -91,6 +96,8 @@ public class DueñoServicio extends AbstractFactoryAndRepository {
 		dueño.setFechaNacimiento(fechaNacimiento);
 		dueño.setTipoDocumento(tipoDocumento);
 		dueño.setDocumento(documento);
+		dueño.setProvincia(provincia);
+		dueño.setCiudad(ciudad);
 		dueño.setDireccion(direccion.substring(0, 1).toUpperCase()
 				+ direccion.substring(1));
 		dueño.setCorreo(correo);

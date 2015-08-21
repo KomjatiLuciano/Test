@@ -25,26 +25,19 @@ package dom.turno;
  */
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
-import javax.annotation.CheckReturnValue;
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Extension;
 import javax.jdo.annotations.PersistenceCapable;
 import javax.jdo.annotations.Persistent;
 
-import org.apache.isis.applib.annotation.ActionLayout;
-import org.apache.isis.applib.annotation.CollectionLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.PropertyLayout;
 import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 import dom.doctor.Doctor;
-import dom.paciente.Paciente;
 
 @javax.jdo.annotations.Queries({
 		@javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "
@@ -167,7 +160,7 @@ public class Agenda {
 		// return this.getIEstadoTurno().ocultarSolicitarTurno();
 	}
 
-	//	 {{ Paciente (property)
+	// {{ Paciente (property)
 	// private Paciente paciente;
 	//
 	// @MemberOrder(sequence = "3")
