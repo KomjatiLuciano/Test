@@ -34,7 +34,7 @@ public class QPersona extends org.datanucleus.api.jdo.query.PersistableExpressio
     public final ObjectExpression<dom.tipoDocumento.TipoDocumentoEnum> tipoDocumento;
     public final StringExpression documento;
     public final ObjectExpression<dom.proviniciasCiudades.ProvinciaEnum> provincia;
-    public final StringExpression ciudad;
+    public final dom.proviniciasCiudades.QCiudad ciudad;
     public final StringExpression direccion;
     public final StringExpression correo;
     public final StringExpression telefono;
@@ -49,7 +49,14 @@ public class QPersona extends org.datanucleus.api.jdo.query.PersistableExpressio
         this.tipoDocumento = new ObjectExpressionImpl<dom.tipoDocumento.TipoDocumentoEnum>(this, "tipoDocumento");
         this.documento = new StringExpressionImpl(this, "documento");
         this.provincia = new ObjectExpressionImpl<dom.proviniciasCiudades.ProvinciaEnum>(this, "provincia");
-        this.ciudad = new StringExpressionImpl(this, "ciudad");
+        if (depth > 0)
+        {
+            this.ciudad = new dom.proviniciasCiudades.QCiudad(this, "ciudad", depth-1);
+        }
+        else
+        {
+            this.ciudad = null;
+        }
         this.direccion = new StringExpressionImpl(this, "direccion");
         this.correo = new StringExpressionImpl(this, "correo");
         this.telefono = new StringExpressionImpl(this, "telefono");
@@ -65,7 +72,7 @@ public class QPersona extends org.datanucleus.api.jdo.query.PersistableExpressio
         this.tipoDocumento = new ObjectExpressionImpl<dom.tipoDocumento.TipoDocumentoEnum>(this, "tipoDocumento");
         this.documento = new StringExpressionImpl(this, "documento");
         this.provincia = new ObjectExpressionImpl<dom.proviniciasCiudades.ProvinciaEnum>(this, "provincia");
-        this.ciudad = new StringExpressionImpl(this, "ciudad");
+        this.ciudad = new dom.proviniciasCiudades.QCiudad(this, "ciudad", 5);
         this.direccion = new StringExpressionImpl(this, "direccion");
         this.correo = new StringExpressionImpl(this, "correo");
         this.telefono = new StringExpressionImpl(this, "telefono");

@@ -36,9 +36,12 @@ import com.google.common.base.Predicate;
 
 import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
+import dom.paciente.Paciente;
+import dom.proviniciasCiudades.Ciudad;
 import dom.proviniciasCiudades.ProvinciaEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
+import dom.turno.Agenda;
 
 /**
  * Contiene la funcionalidad para Cargar/Listar un nuevo Doctor
@@ -91,7 +94,7 @@ public class DoctorServicio extends AbstractFactoryAndRepository {
 			@ParameterLayout(named = "Tipo De Documento") final TipoDocumentoEnum tipoDocumento,
 			@ParameterLayout(named = "Documento") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaDoc.DOCUMENTO) final String documento,
 			@ParameterLayout(named = "Provincia") final ProvinciaEnum provincia,
-			@ParameterLayout(named = "Ciudad") final String ciudad,
+			@ParameterLayout(named = "Ciudad") final Ciudad ciudad,
 			@ParameterLayout(named = "Direccion") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaNombres.REFERENCIA) final String direccion,
 			@ParameterLayout(named = "Correo") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaMail.EMAIL) final String correo,
 			@ParameterLayout(named = "Telefono") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaTel.NUMEROTEL) final String telefono,
@@ -175,6 +178,26 @@ public class DoctorServicio extends AbstractFactoryAndRepository {
 				return input.getEstado() == EstadoEnum.Inactivo ? true : false;
 			}
 		});
+	}
+
+	@MemberOrder(name = "Doctor", sequence = "75")
+	public String reservarDoctor(final ProvinciaEnum provincia, Ciudad ciudad) {
+
+		return "Turno de Paciente agregado correctamente.";
+
+	}
+
+	public ProvinciaEnum default0ReservarDoctor() {
+
+		return ProvinciaEnum.BuenosAires;
+
+	}
+
+	public List<Ciudad> choices1ReservarDoctor(final ProvinciaEnum provincia) {
+
+		return container.allMatches(QueryDefault.create(Ciudad.class,
+				"traerPorProvincia", "provincia", provincia));
+
 	}
 
 	@javax.inject.Inject

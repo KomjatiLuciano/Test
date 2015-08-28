@@ -31,6 +31,7 @@ import org.apache.isis.applib.services.i18n.TranslatableString;
 import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
 import dom.persona.Persona;
+import dom.proviniciasCiudades.Ciudad;
 import dom.turno.Agenda;
 
 /**
@@ -57,7 +58,11 @@ import dom.turno.Agenda;
 				+ "FROM dom.doctor.Doctor "
 				+ "WHERE documento == :parametro || nombre.indexOf(:parametro) == 0 "
 				+ " && nombre.indexOf(:parametro) >= 0 || apellido.indexOf(:parametro) == 0 "
-				+ " && apellido.indexOf(:parametro) >= 0 ") })
+				+ " && apellido.indexOf(:parametro) >= 0 "),
+		@javax.jdo.annotations.Query(name = "traerPorProvincia", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.doctor.Doctor where provincia == :provincia"),
+
+})
 @DomainObject(autoCompleteRepository = DoctorServicio.class, autoCompleteAction = "buscarDoctor")
 @PersistenceCapable
 public class Doctor extends Persona {

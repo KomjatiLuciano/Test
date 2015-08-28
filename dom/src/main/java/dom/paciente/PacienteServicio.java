@@ -35,6 +35,7 @@ import dom.doctor.Doctor;
 import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
 import dom.grupoSanguineo.GrupoSanguineoEnum;
+import dom.proviniciasCiudades.Ciudad;
 import dom.proviniciasCiudades.ProvinciaEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
@@ -93,7 +94,7 @@ public class PacienteServicio extends AbstractFactoryAndRepository {
 			@ParameterLayout(named = "Tipo De Documento") final TipoDocumentoEnum tipoDocumento,
 			@ParameterLayout(named = "Documento") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaNombres.REFERENCIA) final String documento,
 			@ParameterLayout(named = "Provincia") final ProvinciaEnum provincia,
-			@ParameterLayout(named = "Ciudad") final String ciudad,
+			@ParameterLayout(named = "Ciudad") final Ciudad ciudad,
 			@ParameterLayout(named = "Direccion") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaNombres.REFERENCIA) final String direccion,
 			@ParameterLayout(named = "Correo") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaMail.EMAIL) final String correo,
 			@ParameterLayout(named = "Telefono") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaTel.NUMEROTEL) final String telefono,
@@ -199,17 +200,6 @@ public class PacienteServicio extends AbstractFactoryAndRepository {
 			}
 		});
 	}
-
-	/**
-	 * 
-	 * @param turno
-	 */
-	// @MemberOrder(name = "Paciente", sequence = "5.5")
-	// public void reservarTruno(
-	// @ParameterLayout(named = "Turno") final Agenda turno) {
-	// turno.getDisponible();
-	//
-	// }
 
 	@javax.inject.Inject
 	DomainObjectContainer container;

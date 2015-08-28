@@ -15,24 +15,18 @@
  */
 package dom.persona;
 
-import java.util.List;
-
 import javax.jdo.annotations.Column;
 import javax.jdo.annotations.Inheritance;
 import javax.jdo.annotations.InheritanceStrategy;
 import javax.jdo.annotations.PersistenceCapable;
 
 import org.apache.isis.applib.annotation.MemberOrder;
-import org.apache.isis.applib.query.QueryDefault;
 import org.joda.time.LocalDate;
 
-import dom.doctor.Doctor;
-import dom.especialidad.EspecialidadEnum;
+import dom.proviniciasCiudades.Ciudad;
 import dom.proviniciasCiudades.ProvinciaEnum;
-import dom.proviniciasCiudades.RioNegroEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
-import dom.turno.Agenda;
 
 /**
  * Clase abstracta que representa a una persona, de la cual extenderan todos los
@@ -256,15 +250,15 @@ public abstract class Persona {
 	// }}
 
 	// {{ Ciudad (property)
-	private String ciudad;
+	private Ciudad ciudad;
 
 	@MemberOrder(sequence = "8")
 	@Column(allowsNull = "false")
-	public String getCiudad() {
+	public Ciudad getCiudad() {
 		return ciudad;
 	}
 
-	public void setCiudad(final String ciudad) {
+	public void setCiudad(final Ciudad ciudad) {
 		this.ciudad = ciudad;
 	}
 

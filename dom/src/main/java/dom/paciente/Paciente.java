@@ -41,9 +41,11 @@ import dom.persona.Persona;
 // @Inheritance(strategy = InheritanceStrategy.NEW_TABLE)
 // Segunda Estrategia: Una tabla por cada clase, solo las subclases
 @javax.jdo.annotations.Queries({
+
+		@javax.jdo.annotations.Query(name = "traerCiudades", language = "JDOQL", value = "SELECT "
+				+ "FROM dom.turno.Turno"),
 		@javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.paciente.Paciente "),
-
 		@javax.jdo.annotations.Query(name = "buscarNombre,Apellido,Id", language = "JDOQL", value = "SELECT "
 				+ "FROM dom.paciente.Paciente "
 				+ "WHERE documento == :parametro || nombre.indexOf(:parametro) == 0 "
