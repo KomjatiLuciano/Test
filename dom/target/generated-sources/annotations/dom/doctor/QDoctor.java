@@ -30,7 +30,7 @@ public class QDoctor extends dom.persona.QPersona
     public final StringExpression matricula;
     public final ObjectExpression<dom.especialidad.EspecialidadEnum> especialidad;
     public final ObjectExpression<dom.estado.EstadoEnum> estado;
-    public final ListExpression listaTurnos;
+    public final ListExpression listaAgenda;
 
     public QDoctor(PersistableExpression parent, String name, int depth)
     {
@@ -38,7 +38,7 @@ public class QDoctor extends dom.persona.QPersona
         this.matricula = new StringExpressionImpl(this, "matricula");
         this.especialidad = new ObjectExpressionImpl<dom.especialidad.EspecialidadEnum>(this, "especialidad");
         this.estado = new ObjectExpressionImpl<dom.estado.EstadoEnum>(this, "estado");
-        this.listaTurnos = new ListExpressionImpl(this, "listaTurnos");
+        this.listaAgenda = new ListExpressionImpl(this, "listaAgenda");
     }
 
     public QDoctor(Class type, String name, org.datanucleus.api.jdo.query.ExpressionType exprType)
@@ -47,6 +47,6 @@ public class QDoctor extends dom.persona.QPersona
         this.matricula = new StringExpressionImpl(this, "matricula");
         this.especialidad = new ObjectExpressionImpl<dom.especialidad.EspecialidadEnum>(this, "especialidad");
         this.estado = new ObjectExpressionImpl<dom.estado.EstadoEnum>(this, "estado");
-        this.listaTurnos = new ListExpressionImpl(this, "listaTurnos");
+        this.listaAgenda = new ListExpressionImpl(this, "listaAgenda");
     }
 }

@@ -120,7 +120,7 @@ public class Agenda {
 	private Doctor doctor;
 
 	@MemberOrder(sequence = "2")
-	@Persistent(mappedBy = "listaTurnos")
+	@Persistent(mappedBy = "listaAgenda")
 	@Column(allowsNull = "false")
 	/**
 	 * Pemite obtener un doctor 
