@@ -33,8 +33,8 @@ public class QPersona extends org.datanucleus.api.jdo.query.PersistableExpressio
     public final ObjectExpression<org.joda.time.LocalDate> fechaNacimiento;
     public final ObjectExpression<dom.tipoDocumento.TipoDocumentoEnum> tipoDocumento;
     public final StringExpression documento;
-    public final ObjectExpression<dom.proviniciasCiudades.ProvinciaEnum> provincia;
-    public final dom.proviniciasCiudades.QCiudad ciudad;
+    public final dom.ciudadProvincia.QProvincia provincia;
+    public final dom.ciudadProvincia.QCiudad ciudad;
     public final StringExpression direccion;
     public final StringExpression correo;
     public final StringExpression telefono;
@@ -48,10 +48,17 @@ public class QPersona extends org.datanucleus.api.jdo.query.PersistableExpressio
         this.fechaNacimiento = new ObjectExpressionImpl<org.joda.time.LocalDate>(this, "fechaNacimiento");
         this.tipoDocumento = new ObjectExpressionImpl<dom.tipoDocumento.TipoDocumentoEnum>(this, "tipoDocumento");
         this.documento = new StringExpressionImpl(this, "documento");
-        this.provincia = new ObjectExpressionImpl<dom.proviniciasCiudades.ProvinciaEnum>(this, "provincia");
         if (depth > 0)
         {
-            this.ciudad = new dom.proviniciasCiudades.QCiudad(this, "ciudad", depth-1);
+            this.provincia = new dom.ciudadProvincia.QProvincia(this, "provincia", depth-1);
+        }
+        else
+        {
+            this.provincia = null;
+        }
+        if (depth > 0)
+        {
+            this.ciudad = new dom.ciudadProvincia.QCiudad(this, "ciudad", depth-1);
         }
         else
         {
@@ -71,8 +78,8 @@ public class QPersona extends org.datanucleus.api.jdo.query.PersistableExpressio
         this.fechaNacimiento = new ObjectExpressionImpl<org.joda.time.LocalDate>(this, "fechaNacimiento");
         this.tipoDocumento = new ObjectExpressionImpl<dom.tipoDocumento.TipoDocumentoEnum>(this, "tipoDocumento");
         this.documento = new StringExpressionImpl(this, "documento");
-        this.provincia = new ObjectExpressionImpl<dom.proviniciasCiudades.ProvinciaEnum>(this, "provincia");
-        this.ciudad = new dom.proviniciasCiudades.QCiudad(this, "ciudad", 5);
+        this.provincia = new dom.ciudadProvincia.QProvincia(this, "provincia", 5);
+        this.ciudad = new dom.ciudadProvincia.QCiudad(this, "ciudad", 5);
         this.direccion = new StringExpressionImpl(this, "direccion");
         this.correo = new StringExpressionImpl(this, "correo");
         this.telefono = new StringExpressionImpl(this, "telefono");

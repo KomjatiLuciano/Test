@@ -28,11 +28,10 @@ import org.apache.isis.applib.annotation.DomainObject;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
+import dom.agendaDoctor.AgendaDoctor;
 import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
 import dom.persona.Persona;
-import dom.proviniciasCiudades.Ciudad;
-import dom.turno.Agenda;
 
 /**
  * Entidad Doctor la cual representa a cualquier persona que atienda en el
@@ -179,7 +178,7 @@ public class Doctor extends Persona {
 	 */
 
 	// {{ ListaAgenda (property)
-	private List<Agenda> listaAgenda = new ArrayList<Agenda>();
+	private List<AgendaDoctor> listaAgenda = new ArrayList<AgendaDoctor>();
 
 	@MemberOrder(sequence = "14")
 	@Column(allowsNull = "false")
@@ -190,7 +189,7 @@ public class Doctor extends Persona {
 	 * 
 	 * @return listaagenda List<Agenda>
 	 */
-	public List<Agenda> getListaAgenda() {
+	public List<AgendaDoctor> getListaAgenda() {
 		return listaAgenda;
 	}
 
@@ -200,7 +199,7 @@ public class Doctor extends Persona {
 	 * @param List
 	 *            <Agenda> listaAgenda listaAgenda
 	 */
-	public void setListaAgenda(final List<Agenda> listaAgenda) {
+	public void setListaAgenda(final List<AgendaDoctor> listaAgenda) {
 		this.listaAgenda = listaAgenda;
 	}
 

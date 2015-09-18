@@ -28,9 +28,9 @@ import org.joda.time.LocalDate;
 
 import com.google.common.base.Predicate;
 
+import dom.ciudadProvincia.Ciudad;
+import dom.ciudadProvincia.Provincia;
 import dom.estado.EstadoEnum;
-import dom.proviniciasCiudades.Ciudad;
-import dom.proviniciasCiudades.ProvinciaEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
 
@@ -81,7 +81,7 @@ public class DueñoServicio extends AbstractFactoryAndRepository {
 			@ParameterLayout(named = "Fecha de Nacimiento") final LocalDate fechaNacimiento,
 			@ParameterLayout(named = "Tipo De Documento") final TipoDocumentoEnum tipoDocumento,
 			@ParameterLayout(named = "Documento") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaDoc.DOCUMENTO) final String documento,
-			@ParameterLayout(named = "Provincia") final ProvinciaEnum provincia,
+			@ParameterLayout(named = "Provincia") final Provincia provincia,
 			@ParameterLayout(named = "Ciudad") final Ciudad ciudad,
 			@ParameterLayout(named = "Direccion") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaNombres.REFERENCIA) final String direccion,
 			@ParameterLayout(named = "Correo") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaMail.EMAIL) final String correo,

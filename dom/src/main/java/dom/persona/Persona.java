@@ -23,8 +23,8 @@ import javax.jdo.annotations.PersistenceCapable;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.joda.time.LocalDate;
 
-import dom.proviniciasCiudades.Ciudad;
-import dom.proviniciasCiudades.ProvinciaEnum;
+import dom.ciudadProvincia.Ciudad;
+import dom.ciudadProvincia.Provincia;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
 
@@ -235,15 +235,15 @@ public abstract class Persona {
 	}
 
 	// {{ Provincia (property)
-	private ProvinciaEnum provincia;
+	private Provincia provincia;
 
 	@MemberOrder(sequence = "7")
 	@Column(allowsNull = "false")
-	public ProvinciaEnum getProvincia() {
+	public Provincia getProvincia() {
 		return provincia;
 	}
 
-	public void setProvincia(final ProvinciaEnum provincia) {
+	public void setProvincia(final Provincia provincia) {
 		this.provincia = provincia;
 	}
 

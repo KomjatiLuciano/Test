@@ -18,7 +18,6 @@ package dom.doctor;
 import java.util.List;
 
 import javax.inject.Named;
-import javax.swing.JOptionPane;
 
 import org.apache.isis.applib.AbstractFactoryAndRepository;
 import org.apache.isis.applib.DomainObjectContainer;
@@ -34,14 +33,12 @@ import org.joda.time.LocalDate;
 
 import com.google.common.base.Predicate;
 
+import dom.ciudadProvincia.Ciudad;
+import dom.ciudadProvincia.Provincia;
 import dom.especialidad.EspecialidadEnum;
 import dom.estado.EstadoEnum;
-import dom.paciente.Paciente;
-import dom.proviniciasCiudades.Ciudad;
-import dom.proviniciasCiudades.ProvinciaEnum;
 import dom.tipoDeSexo.TipoDeSexoEnum;
 import dom.tipoDocumento.TipoDocumentoEnum;
-import dom.turno.Agenda;
 
 /**
  * Contiene la funcionalidad para Cargar/Listar un nuevo Doctor
@@ -93,7 +90,7 @@ public class DoctorServicio extends AbstractFactoryAndRepository {
 			@ParameterLayout(named = "Fecha de Nacimiento") final LocalDate fechaNacimiento,
 			@ParameterLayout(named = "Tipo De Documento") final TipoDocumentoEnum tipoDocumento,
 			@ParameterLayout(named = "Documento") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaDoc.DOCUMENTO) final String documento,
-			@ParameterLayout(named = "Provincia") final ProvinciaEnum provincia,
+			@ParameterLayout(named = "Provincia") final Provincia provincia,
 			@ParameterLayout(named = "Ciudad") final Ciudad ciudad,
 			@ParameterLayout(named = "Direccion") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaNombres.REFERENCIA) final String direccion,
 			@ParameterLayout(named = "Correo") @Parameter(regexPattern = dom.regex.RegexValidation.ValidaMail.EMAIL) final String correo,
@@ -180,25 +177,64 @@ public class DoctorServicio extends AbstractFactoryAndRepository {
 		});
 	}
 
-	@MemberOrder(name = "Doctor", sequence = "75")
-	public String reservarDoctor(final ProvinciaEnum provincia, Ciudad ciudad) {
+	@ActionLayout(hidden = Where.EVERYWHERE)
+	public String buscarCiudad(final Provincia provincia, Ciudad ciudad) {
 
-		return "Turno de Paciente agregado correctamente.";
-
-	}
-
-	public ProvinciaEnum default0ReservarDoctor() {
-
-		return ProvinciaEnum.BuenosAires;
+		return "";
 
 	}
 
-	public List<Ciudad> choices1ReservarDoctor(final ProvinciaEnum provincia) {
-
-		return container.allMatches(QueryDefault.create(Ciudad.class,
-				"traerPorProvincia", "provincia", provincia));
-
+	public List<Provincia> choices0BuscarCiudad(final Provincia provincia) {
+		return container.allMatches(QueryDefault.create(Provincia.class,
+				"traerProvincia", "provincia", provincia));
 	}
+
+	public Provincia default0BuscarCiudad(final Provincia prov) {
+		// return (Provincia) container.allMatches(QueryDefault.create(
+		// Provincia.class, "traerPrimeraProv", prov));
+		return container.allInstances(Provincia.class, 0).get(0);
+		// return container.firstMatch(Provincia.class, getId());
+	}
+
+	public List<Provincia> choices1BuscarCiudad(final Provincia provincia,
+			Ciudad ciudad) {
+		return container.allMatches(QueryDefault.create(Provincia.class,
+				"traerCiudad", "provincia", provincia, "ciudad", ciudad));
+	}
+
+	// @MemberOrder(name = "Doctor", sequence = "75")
+	// public String reservarDoctor(final ProvinciaEnum provincia, Ciudad
+	// ciudad) {
+	//
+	// return "Turno de Paciente agregado correctamente.";
+	//
+	// }
+	//
+	// public ProvinciaEnum default0ReservarDoctor() {
+	//
+	// return ProvinciaEnum.BuenosAires;
+	//
+	// }
+	//
+	// public List<Ciudad> choices1ReservarDoctor(final ProvinciaEnum provincia)
+	// {
+	//
+	// return container.allMatches(QueryDefault.create(Ciudad.class,
+	// "traerPorProvincia", "provincia", provincia));
+	//
+	// }
+
+	// @ActionLayout(hidden = Where.EVERYWHERE)
+	// public List<Provincia> buscarProvincia(String provincia) {
+	// return allMatches(QueryDefault.create(Provincia.class,
+	// "traerProvincia", "parametro", provincia));
+	// }
+	//
+	// @ActionLayout(hidden = Where.EVERYWHERE)
+	// public List<Ciudad> buscarCiudad(String ciudad) {
+	// return allMatches(QueryDefault.create(Ciudad.class, "traerCiudad",
+	// "parametro", ciudad));
+	// }
 
 	@javax.inject.Inject
 	DomainObjectContainer container;

@@ -30,6 +30,7 @@ public class QPaciente extends dom.persona.QPersona
     public final NumericExpression<Integer> legajo;
     public final ObjectExpression<dom.estado.EstadoEnum> estado;
     public final ObjectExpression<dom.grupoSanguineo.GrupoSanguineoEnum> grupoSanguineo;
+    public final ListExpression listaTurnos;
 
     public QPaciente(PersistableExpression parent, String name, int depth)
     {
@@ -37,6 +38,7 @@ public class QPaciente extends dom.persona.QPersona
         this.legajo = new NumericExpressionImpl<Integer>(this, "legajo");
         this.estado = new ObjectExpressionImpl<dom.estado.EstadoEnum>(this, "estado");
         this.grupoSanguineo = new ObjectExpressionImpl<dom.grupoSanguineo.GrupoSanguineoEnum>(this, "grupoSanguineo");
+        this.listaTurnos = new ListExpressionImpl(this, "listaTurnos");
     }
 
     public QPaciente(Class type, String name, org.datanucleus.api.jdo.query.ExpressionType exprType)
@@ -45,5 +47,6 @@ public class QPaciente extends dom.persona.QPersona
         this.legajo = new NumericExpressionImpl<Integer>(this, "legajo");
         this.estado = new ObjectExpressionImpl<dom.estado.EstadoEnum>(this, "estado");
         this.grupoSanguineo = new ObjectExpressionImpl<dom.grupoSanguineo.GrupoSanguineoEnum>(this, "grupoSanguineo");
+        this.listaTurnos = new ListExpressionImpl(this, "listaTurnos");
     }
 }
