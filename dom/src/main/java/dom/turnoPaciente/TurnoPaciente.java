@@ -11,10 +11,8 @@ import org.apache.isis.applib.annotation.Where;
 
 import dom.paciente.Paciente;
 
-@javax.jdo.annotations.Queries({
-	@javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "
-			+ "FROM dom.turnoPaciente.TurnoPaciente "),})
-
+@javax.jdo.annotations.Queries({ @javax.jdo.annotations.Query(name = "traerTodos", language = "JDOQL", value = "SELECT "
+		+ "FROM dom.turnoPaciente.TurnoPaciente "), })
 @PersistenceCapable
 public class TurnoPaciente {
 

@@ -14,6 +14,7 @@
    limitations under the License.
  */
 package dom.turnoPaciente;
+
 /**
  * Interface para implementar los distintos tipos de Estado de los turnos
  * 

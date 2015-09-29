@@ -20,6 +20,8 @@ import javax.jdo.annotations.IdGeneratorStrategy;
 import javax.jdo.annotations.IdentityType;
 import javax.jdo.annotations.PersistenceCapable;
 
+import org.apache.isis.applib.DomainObjectContainer;
+import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.services.i18n.TranslatableString;
 
 @PersistenceCapable(identityType = IdentityType.DATASTORE)
@@ -66,9 +68,26 @@ public class TurnoAceptado implements IEstadoTurno {
 
 	}
 
+	// {{ TurnoPaciente (property)
+	private TurnoPaciente turnoPaciente;
+
+	@MemberOrder(sequence = "1")
+	public TurnoPaciente getTurnoPaciente() {
+		return turnoPaciente;
+	}
+
+	public void setTurnoPaciente(final TurnoPaciente turnoPaciente) {
+		this.turnoPaciente = turnoPaciente;
+	}
+
+	// }}
+
 	@Override
 	public String nombreEstado() {
 		return "Turno Aceptado.";
 	}
+
+	@javax.inject.Inject
+	private DomainObjectContainer container;
 
 }

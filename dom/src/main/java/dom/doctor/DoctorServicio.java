@@ -190,10 +190,7 @@ public class DoctorServicio extends AbstractFactoryAndRepository {
 	}
 
 	public Provincia default0BuscarCiudad(final Provincia prov) {
-		// return (Provincia) container.allMatches(QueryDefault.create(
-		// Provincia.class, "traerPrimeraProv", prov));
 		return container.allInstances(Provincia.class, 0).get(0);
-		// return container.firstMatch(Provincia.class, getId());
 	}
 
 	public List<Provincia> choices1BuscarCiudad(final Provincia provincia,
