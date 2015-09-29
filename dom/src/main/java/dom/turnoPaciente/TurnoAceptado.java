@@ -68,17 +68,17 @@ public class TurnoAceptado implements IEstadoTurno {
 
 	}
 
-	// {{ TurnoPaciente (property)
-	private TurnoPaciente turnoPaciente;
-
-	@MemberOrder(sequence = "1")
-	public TurnoPaciente getTurnoPaciente() {
-		return turnoPaciente;
-	}
-
-	public void setTurnoPaciente(final TurnoPaciente turnoPaciente) {
-		this.turnoPaciente = turnoPaciente;
-	}
+//	// {{ TurnoPaciente (property)
+//	private TurnoPaciente turnoPaciente;
+//
+//	@MemberOrder(sequence = "1")
+//	public TurnoPaciente getTurnoPaciente() {
+//		return turnoPaciente;
+//	}
+//
+//	public void setTurnoPaciente(final TurnoPaciente turnoPaciente) {
+//		this.turnoPaciente = turnoPaciente;
+//	}
 
 	// }}
 

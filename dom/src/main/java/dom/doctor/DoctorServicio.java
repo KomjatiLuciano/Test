@@ -199,39 +199,42 @@ public class DoctorServicio extends AbstractFactoryAndRepository {
 				"traerCiudad", "provincia", provincia, "ciudad", ciudad));
 	}
 
-	// @MemberOrder(name = "Doctor", sequence = "75")
-	// public String reservarDoctor(final ProvinciaEnum provincia, Ciudad
-	// ciudad) {
-	//
-	// return "Turno de Paciente agregado correctamente.";
-	//
-	// }
-	//
-	// public ProvinciaEnum default0ReservarDoctor() {
-	//
-	// return ProvinciaEnum.BuenosAires;
-	//
-	// }
-	//
-	// public List<Ciudad> choices1ReservarDoctor(final ProvinciaEnum provincia)
-	// {
-	//
-	// return container.allMatches(QueryDefault.create(Ciudad.class,
-	// "traerPorProvincia", "provincia", provincia));
-	//
-	// }
+	// Choices de Provincia y ciudades
+		/**
+		 * buscarProvincia retorna una lista de todas las Provincias en la base de
+		 * datos.
+		 * 
+		 */
 
-	// @ActionLayout(hidden = Where.EVERYWHERE)
-	// public List<Provincia> buscarProvincia(String provincia) {
-	// return allMatches(QueryDefault.create(Provincia.class,
-	// "traerProvincia", "parametro", provincia));
-	// }
-	//
-	// @ActionLayout(hidden = Where.EVERYWHERE)
-	// public List<Ciudad> buscarCiudad(String ciudad) {
-	// return allMatches(QueryDefault.create(Ciudad.class, "traerCiudad",
-	// "parametro", ciudad));
-	// }
+		@ActionLayout(hidden = Where.EVERYWHERE)
+		public List<Provincia> buscarProvincia(String prov) {
+			return allMatches(QueryDefault.create(Provincia.class,
+					"traerProvincia", "nombre", prov));
+		}
+
+		/**
+		 * Choice default devuelve la primer provincia de la lista.
+		 * 
+		 */
+		public Provincia default6CrearDoctor() {
+			return container.firstMatch(QueryDefault.create(Provincia.class,
+					"traerTodas"));
+
+		}
+
+		/**
+		 * Choice7 devuelve una lista de ciudades dependiendo cual provincia se
+		 * selecciono previamente.
+		 */
+
+		public List<Ciudad> choices7CrearDoctor(final String apellido,
+				final String nombre, final TipoDeSexoEnum tipoSexo,
+				final LocalDate fechaNacimiento,
+				final TipoDocumentoEnum tipoDocumento, final String documento,
+				final Provincia provincias) {
+			return container.allMatches(QueryDefault.create(Ciudad.class,
+					"traerCiudad", "provincia", provincias));
+		}
 
 	@javax.inject.Inject
 	DomainObjectContainer container;

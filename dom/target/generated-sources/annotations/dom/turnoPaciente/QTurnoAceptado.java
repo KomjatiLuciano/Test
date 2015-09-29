@@ -28,6 +28,7 @@ public class QTurnoAceptado extends org.datanucleus.api.jdo.query.PersistableExp
     }
 
     public final dom.turnoPaciente.QTurnoPaciente turno;
+    public final ObjectExpression<org.apache.isis.applib.DomainObjectContainer> container;
 
     public QTurnoAceptado(PersistableExpression parent, String name, int depth)
     {
@@ -40,11 +41,13 @@ public class QTurnoAceptado extends org.datanucleus.api.jdo.query.PersistableExp
         {
             this.turno = null;
         }
+        this.container = new ObjectExpressionImpl<org.apache.isis.applib.DomainObjectContainer>(this, "container");
     }
 
     public QTurnoAceptado(Class type, String name, org.datanucleus.api.jdo.query.ExpressionType exprType)
     {
         super(type, name, exprType);
         this.turno = new dom.turnoPaciente.QTurnoPaciente(this, "turno", 5);
+        this.container = new ObjectExpressionImpl<org.apache.isis.applib.DomainObjectContainer>(this, "container");
     }
 }

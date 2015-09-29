@@ -1,13 +1,13 @@
 Manifest-Version: 1.0
-Build-Java: 1.8.0_45
-Build-Label: 1.0-SNAPSHOT
-Archiver-Version: Plexus Archiver
-Built-By: luciano
-Build-Host: 
-Build-Maven: Maven 3.3.1
-Build-Time: 2015-09-18T01:35:55Z
+Build-Time: 2015-09-29T16:07:31Z
+Build-Java: 1.7.0_75
 Build-OS: Linux
-Build-User: luciano
+Built-By: ebrunetta
+Build-Jdk: 1.7.0_75
+Build-Maven: Maven 3.3.1
+Build-Label: 1.0-SNAPSHOT
 Created-By: Apache Maven 3.3.1
-Build-Jdk: 1.8.0_45
+Build-Host: 
+Build-User: ebrunetta
+Archiver-Version: Plexus Archiver
 

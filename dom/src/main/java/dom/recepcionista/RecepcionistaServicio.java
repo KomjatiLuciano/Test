@@ -24,6 +24,7 @@ import org.apache.isis.applib.annotation.DomainServiceLayout;
 import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Parameter;
 import org.apache.isis.applib.annotation.ParameterLayout;
+import org.apache.isis.applib.query.QueryDefault;
 import org.joda.time.LocalDate;
 
 import com.google.common.base.Predicate;
@@ -154,10 +155,30 @@ public class RecepcionistaServicio extends AbstractFactoryAndRepository {
 		});
 	}
 
-	// @MemberOrder(name = "Recepcionista", sequence = "3.4")
-	// public void buscarRecepcionista() {
-	//
-	// }
+	/**
+	 * Choices para Traer la primer Provincia
+	 * 
+	 */
+
+	public Provincia default6CrearRecepcionista() {
+		return container.firstMatch(QueryDefault.create(Provincia.class,
+				"traerTodas"));
+
+	}
+
+	/**
+	 * Choices para Listar todas las ciudades de la provincia Seleccionada.
+	 * 
+	 */
+
+	public List<Ciudad> choices7CrearRecepcionista(final String apellido,
+			final String nombre, final TipoDeSexoEnum tipoSexo,
+			final LocalDate fechaNacimiento,
+			final TipoDocumentoEnum tipoDocumento, final String documento,
+			final Provincia provincias) {
+		return container.allMatches(QueryDefault.create(Ciudad.class,
+				"traerCiudad", "provincia", provincias));
+	}
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
