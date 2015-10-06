@@ -15,6 +15,9 @@
  */
 package dom.turnoPaciente;
 
+import dom.doctor.Doctor;
+import dom.paciente.Paciente;
+
 /**
  * Interface para implementar los distintos tipos de Estado de los turnos
  * 
@@ -27,14 +30,12 @@ public interface IEstadoTurno {
 
 	public void disponerTurno();
 
-	public void solicitarTurno();
+	public void solicitarTurno(final Doctor doctor, final Paciente paciente);
 
 	public void aceptarTurno();
 
 	public void atenderTurno();
 
 	public void cancelarTurno();
-
-	public String nombreEstado();
 
 }

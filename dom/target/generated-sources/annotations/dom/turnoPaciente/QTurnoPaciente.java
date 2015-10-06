@@ -28,13 +28,19 @@ public class QTurnoPaciente extends org.datanucleus.api.jdo.query.PersistableExp
     }
 
     public final dom.paciente.QPaciente paciente;
-    public final ObjectExpression<java.lang.Boolean> disponible;
-    public final ObjectExpression<dom.turnoPaciente.IEstadoTurno> iEstadoTurno;
-    public final dom.turnoPaciente.QTurnoDisponible turnoDisponible;
-    public final dom.turnoPaciente.QTurnoSolicitado turnoSolicitado;
-    public final dom.turnoPaciente.QTurnoAceptado turnoAceptado;
-    public final dom.turnoPaciente.QTurnoAtendido turnoAtendido;
-    public final dom.turnoPaciente.QTurnoCancelado turnoCancelado;
+    public final dom.doctor.QDoctor doctor;
+    public final ObjectExpression<dom.turnoPaciente.IEstadoTurno> estado;
+    public final dom.turnoPaciente.QAceptado aceptado;
+    public final dom.turnoPaciente.QAtendido atendido;
+    public final dom.turnoPaciente.QCancelado cancelado;
+    public final dom.turnoPaciente.QDisponible disponible;
+    public final BooleanExpression disponerOcultado;
+    public final BooleanExpression solicitarOcultado;
+    public final BooleanExpression aceptarOcultado;
+    public final BooleanExpression atenderOcultado;
+    public final BooleanExpression cancelarOcultado;
+    public final dom.turnoPaciente.QSolicitado solicitado;
+    public final ObjectExpression<org.apache.isis.applib.DomainObjectContainer> container;
 
     public QTurnoPaciente(PersistableExpression parent, String name, int depth)
     {
@@ -47,60 +53,79 @@ public class QTurnoPaciente extends org.datanucleus.api.jdo.query.PersistableExp
         {
             this.paciente = null;
         }
-        this.disponible = new ObjectExpressionImpl<java.lang.Boolean>(this, "disponible");
-        this.iEstadoTurno = new ObjectExpressionImpl<dom.turnoPaciente.IEstadoTurno>(this, "iEstadoTurno");
         if (depth > 0)
         {
-            this.turnoDisponible = new dom.turnoPaciente.QTurnoDisponible(this, "turnoDisponible", depth-1);
+            this.doctor = new dom.doctor.QDoctor(this, "doctor", depth-1);
         }
         else
         {
-            this.turnoDisponible = null;
+            this.doctor = null;
         }
+        this.estado = new ObjectExpressionImpl<dom.turnoPaciente.IEstadoTurno>(this, "estado");
         if (depth > 0)
         {
-            this.turnoSolicitado = new dom.turnoPaciente.QTurnoSolicitado(this, "turnoSolicitado", depth-1);
+            this.aceptado = new dom.turnoPaciente.QAceptado(this, "aceptado", depth-1);
         }
         else
         {
-            this.turnoSolicitado = null;
+            this.aceptado = null;
         }
         if (depth > 0)
         {
-            this.turnoAceptado = new dom.turnoPaciente.QTurnoAceptado(this, "turnoAceptado", depth-1);
+            this.atendido = new dom.turnoPaciente.QAtendido(this, "atendido", depth-1);
         }
         else
         {
-            this.turnoAceptado = null;
+            this.atendido = null;
         }
         if (depth > 0)
         {
-            this.turnoAtendido = new dom.turnoPaciente.QTurnoAtendido(this, "turnoAtendido", depth-1);
+            this.cancelado = new dom.turnoPaciente.QCancelado(this, "cancelado", depth-1);
         }
         else
         {
-            this.turnoAtendido = null;
+            this.cancelado = null;
         }
         if (depth > 0)
         {
-            this.turnoCancelado = new dom.turnoPaciente.QTurnoCancelado(this, "turnoCancelado", depth-1);
+            this.disponible = new dom.turnoPaciente.QDisponible(this, "disponible", depth-1);
         }
         else
         {
-            this.turnoCancelado = null;
+            this.disponible = null;
         }
+        this.disponerOcultado = new BooleanExpressionImpl(this, "disponerOcultado");
+        this.solicitarOcultado = new BooleanExpressionImpl(this, "solicitarOcultado");
+        this.aceptarOcultado = new BooleanExpressionImpl(this, "aceptarOcultado");
+        this.atenderOcultado = new BooleanExpressionImpl(this, "atenderOcultado");
+        this.cancelarOcultado = new BooleanExpressionImpl(this, "cancelarOcultado");
+        if (depth > 0)
+        {
+            this.solicitado = new dom.turnoPaciente.QSolicitado(this, "solicitado", depth-1);
+        }
+        else
+        {
+            this.solicitado = null;
+        }
+        this.container = new ObjectExpressionImpl<org.apache.isis.applib.DomainObjectContainer>(this, "container");
     }
 
     public QTurnoPaciente(Class type, String name, org.datanucleus.api.jdo.query.ExpressionType exprType)
     {
         super(type, name, exprType);
         this.paciente = new dom.paciente.QPaciente(this, "paciente", 5);
-        this.disponible = new ObjectExpressionImpl<java.lang.Boolean>(this, "disponible");
-        this.iEstadoTurno = new ObjectExpressionImpl<dom.turnoPaciente.IEstadoTurno>(this, "iEstadoTurno");
-        this.turnoDisponible = new dom.turnoPaciente.QTurnoDisponible(this, "turnoDisponible", 5);
-        this.turnoSolicitado = new dom.turnoPaciente.QTurnoSolicitado(this, "turnoSolicitado", 5);
-        this.turnoAceptado = new dom.turnoPaciente.QTurnoAceptado(this, "turnoAceptado", 5);
-        this.turnoAtendido = new dom.turnoPaciente.QTurnoAtendido(this, "turnoAtendido", 5);
-        this.turnoCancelado = new dom.turnoPaciente.QTurnoCancelado(this, "turnoCancelado", 5);
+        this.doctor = new dom.doctor.QDoctor(this, "doctor", 5);
+        this.estado = new ObjectExpressionImpl<dom.turnoPaciente.IEstadoTurno>(this, "estado");
+        this.aceptado = new dom.turnoPaciente.QAceptado(this, "aceptado", 5);
+        this.atendido = new dom.turnoPaciente.QAtendido(this, "atendido", 5);
+        this.cancelado = new dom.turnoPaciente.QCancelado(this, "cancelado", 5);
+        this.disponible = new dom.turnoPaciente.QDisponible(this, "disponible", 5);
+        this.disponerOcultado = new BooleanExpressionImpl(this, "disponerOcultado");
+        this.solicitarOcultado = new BooleanExpressionImpl(this, "solicitarOcultado");
+        this.aceptarOcultado = new BooleanExpressionImpl(this, "aceptarOcultado");
+        this.atenderOcultado = new BooleanExpressionImpl(this, "atenderOcultado");
+        this.cancelarOcultado = new BooleanExpressionImpl(this, "cancelarOcultado");
+        this.solicitado = new dom.turnoPaciente.QSolicitado(this, "solicitado", 5);
+        this.container = new ObjectExpressionImpl<org.apache.isis.applib.DomainObjectContainer>(this, "container");
     }
 }

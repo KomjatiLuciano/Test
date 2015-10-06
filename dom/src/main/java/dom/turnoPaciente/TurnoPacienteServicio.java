@@ -11,6 +11,8 @@ import org.apache.isis.applib.annotation.MemberOrder;
 import org.apache.isis.applib.annotation.Where;
 import org.apache.isis.applib.query.QueryDefault;
 
+import com.google.inject.name.Named;
+
 import dom.agendaDoctor.AgendaDoctor;
 import dom.doctor.Doctor;
 import dom.especialidad.EspecialidadEnum;
@@ -20,34 +22,33 @@ import dom.paciente.Paciente;
 @DomainServiceLayout(named = "Paciente", menuBar = DomainServiceLayout.MenuBar.PRIMARY, menuOrder = "5")
 public class TurnoPacienteServicio extends AbstractFactoryAndRepository {
 
-	@MemberOrder(name = "Paciente", sequence = "75")
-	public String reservarTurno(final EspecialidadEnum especialidad,
-			Doctor doctor, AgendaDoctor agenda, Paciente paciente) {
+	public TurnoPaciente asignarTurno(
+			final @Named("Especialidad") EspecialidadEnum especialidad,
+			final @Named("Doctor") Doctor doctor,
+			final @Named("Agenda Doctor") AgendaDoctor agendaDoctor,
+			final @Named("Paciente") Paciente paciente) {
 
 		final TurnoPaciente turno = newTransientInstance(TurnoPaciente.class);
-
-		turno.setDisponible(false);
-		turno.setPaciente(paciente);
-		persist(turno);
-		return "Turno de Paciente agregado correctamente.";
-
+		turno.getEstado().solicitarTurno(doctor, paciente);
+		persistIfNotAlready(turno);
+		container.flush();
+		return turno;
 	}
 
-	public EspecialidadEnum default0ReservarTurno() {
+	public EspecialidadEnum default0AsignarTurno() {
 
 		return EspecialidadEnum.Clinica_General;
 
 	}
 
-	public List<Doctor> choices1ReservarTurno(
-			final EspecialidadEnum especialidad) {
+	public List<Doctor> choices1AsignarTurno(final EspecialidadEnum especialidad) {
 
 		return container.allMatches(QueryDefault.create(Doctor.class,
 				"traerPorEspecialidad", "especialidad", especialidad));
 
 	}
 
-	public List<AgendaDoctor> choices2ReservarTurno(
+	public List<AgendaDoctor> choices2AsignarTurno(
 			final EspecialidadEnum especialidad, Doctor doctor) {
 		return container.allMatches(QueryDefault.create(AgendaDoctor.class,
 				"traerTurnos"));
@@ -64,6 +65,28 @@ public class TurnoPacienteServicio extends AbstractFactoryAndRepository {
 		return allMatches(QueryDefault.create(TurnoPaciente.class,
 				"traerTodos", "parametro", turno));
 	}
+
+	@MemberOrder(name = "Paciente", sequence = "5.2")
+	public List<TurnoPaciente> listarTurnosPaciente() {
+		return container.allInstances(TurnoPaciente.class);
+	}
+
+	// public boolean hideAsignarTurno() {
+	// return turno.getEstado().esconderAsignarTurno();
+	// }
+
+	// public TurnoPaciente nuevoTurno(final Paciente paciente, final Doctor
+	// doctor) {
+	//
+	// final TurnoPaciente turno = container
+	// .newTransientInstance(TurnoPaciente.class);
+	// turno.setPaciente(paciente);
+	// turno.setDoctor(doctor);
+	// container.persistIfNotAlready(turno);
+	// container.flush();
+	// return turno;
+	//
+	// }
 
 	@javax.inject.Inject
 	DomainObjectContainer container;
